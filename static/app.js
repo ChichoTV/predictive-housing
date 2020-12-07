@@ -14,10 +14,28 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
-    apiCall(userInput)
     apiCall(userInput);
+    apiCall(userInput);
+    linear_regression(userInput);
     getDemoInfo(userInput)
     getHomes(userInput)
+}
+// TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
+function linear_regression(input){
+    var url=`https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2000-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
+    d3.json(`/regression/${input}`).then(function (predictions){
+        console.log(predictions)
+        predicted_data=Object.values(predictions)
+        predicted_years=Object.keys(predictions)
+        var trace = {
+            x : predicted_years,
+            y : predicted_data, 
+            type : 'bar',
+            color:'red'
+        };
+        barData=[trace]
+        Plotly.addTraces('bar', trace);
+    })
 }
 
 // Function to search the 2018 cencus data we have stored in SQL a database
