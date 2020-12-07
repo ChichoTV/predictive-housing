@@ -34,6 +34,16 @@ function linear_regression(input){
             color:'red'
         };
         barData=[trace]
+        var layout = {
+            title : "House Price",
+            yaxis : {
+                title : "Price of House" ,
+                range : [ d3.min(predicted_data) -d3.min(predicted_data) *.01 , d3.max(predicted_data) +d3.min(predicted_data) *.01]
+            },
+            xaxis : {
+                title : "Years"
+            }
+        };
         Plotly.addTraces('bar', trace);
     })
 }

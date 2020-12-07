@@ -30,7 +30,7 @@ def sqlsearch(zipcode):
 @app.route("/regression/<zipcode>")
 def regression(zipcode):
     # test api starting at the year 2000
-    test_url=f'https://www.quandl.com/api/v3/datasets/ZILLOW/Z{zipcode}_ZHVISF?start_date=2000-01-01&api_key=sPG_jsHhtuegYcT7TNWz'
+    test_url=f'https://www.quandl.com/api/v3/datasets/ZILLOW/Z{zipcode}_ZHVISF?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz'
     response=requests.get(test_url).json()
     data=response['dataset']['data']
     def pull_price(n):
