@@ -29,7 +29,7 @@ def sqlsearch(zipcode):
     return C2018.to_json() 
 @app.route("/regression/<zipcode>")
 def regression(zipcode):
-    # test api starting at the year 2000
+    # test api starting at the year 2017 to match the current graphs
     test_url=f'https://www.quandl.com/api/v3/datasets/ZILLOW/Z{zipcode}_ZHVISF?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz'
     response=requests.get(test_url).json()
     data=response['dataset']['data']
