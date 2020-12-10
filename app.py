@@ -22,8 +22,6 @@ def homes(zipcode):
 def sqlsearch(zipcode):
     C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018 where zipcode={zipcode}', connection)
     return C2018.to_json() 
-<<<<<<< Updated upstream
-=======
     
 @app.route("/regression/<zipcode>")
 def regression(zipcode):
@@ -68,7 +66,6 @@ def regression(zipcode):
 
 
 
->>>>>>> Stashed changes
 
 
 if __name__ == '__main__':
