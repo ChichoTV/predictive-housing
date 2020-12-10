@@ -20,6 +20,7 @@ function handleSubmit(){
     getHomes(userInput)
     linear_regression(userInput);
 }
+
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
 function linear_regression(input){
     var url=`https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2000-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
