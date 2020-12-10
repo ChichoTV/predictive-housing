@@ -16,9 +16,9 @@ function handleSubmit(){
     // kick off other function using the user input
     apiCall(userInput);
     apiCall(userInput);
-    linear_regression(userInput);
     getDemoInfo(userInput)
     getHomes(userInput)
+    linear_regression(userInput);
 }
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
 function linear_regression(input){
@@ -31,6 +31,7 @@ function linear_regression(input){
             x : predicted_years,
             y : predicted_data, 
             type : 'bar',
+            name:'Predicted Values'
         };
         barData=[trace]
         Plotly.addTraces('bar', trace);
@@ -63,7 +64,8 @@ function apiCall(input) {
         var trace = {
             x : ydate,
             y : xprice, 
-            type : 'bar'
+            type : 'bar',
+            name: '2017-2020'
         };
         // group the data 
         var barData = [trace];
