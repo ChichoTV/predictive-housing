@@ -1,4 +1,5 @@
 DROP TABLE census_2018;
+DROP TABLE regions;
 
 CREATE TABLE census_2018(
 	zipcode             						int,
@@ -37,5 +38,12 @@ CREATE TABLE census_2018(
 	military			varchar,
 	timezone            varchar
 	);
+
+CREATE TABLE regions(
+region_id INT PRIMARY KEY,
+region VARCHAR(255),
+zip INT
+);
 	
 SELECT * FROM census_2018;
+SELECT * FROM regions
