@@ -1,1 +1,0 @@
-https://www.quandl.com/api/v3/datasets/ZILLOW/Z95973_ZHVISF?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz
