@@ -1,0 +1,47 @@
+body {
+    background-color: rgb(233, 240, 247);
+    text-align: center;
+}
+#title {
+    color: darkslateblue;
+    text-align: center
+}
+
+#subtitle {
+    color: darkslategray;
+    text-align: center
+}
+
+#Search {
+    color: darkblue;
+    display: block;
+    text-align:center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* body > .container > .col-md-12{} */
+
+.container{
+    background-color: white;
+    /* border: green;
+    border-radius: 20px; */
+    border: 5px solid green;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+#savingsNumber{
+    font-size: large;
+    color: red;
+    padding-bottom: 20px;
+    font-weight:bold
+}
+h4{
+    color: darkgreen;
+    font-weight: bold;
+}
+
+#Rent_Button{
+    text-align: center;
+}
