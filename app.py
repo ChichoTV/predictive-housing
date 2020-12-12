@@ -4,7 +4,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import json
 
-engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
+engine = create_engine('postgresql://admin2:12345@localhost:5432/Predictive_Housing')
 connection = engine.connect()
 
 app = Flask(__name__)
