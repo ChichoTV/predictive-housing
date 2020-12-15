@@ -32,9 +32,10 @@ function APIRentalCall(input){
     var myRentalData = JSON.parse(xhReq1.responseText);
     let medRent = getMedianPrice(myRentalData);
     console.log(medRent);
+    document.getElementById("RatesTitle").innerHTML = "Median Monthly Rates"
     document.getElementById("Rent").innerHTML = "The estimated monthly rent in this area is: $<b>" + medRent + "</b>"
     return medRent;
-   
+    
 }
 
 function APIHomePriceCall(input){
@@ -47,6 +48,8 @@ function APIHomePriceCall(input){
     // console.log(myHomePriceData);
     let MedPriceHome = getMedianPrice(myHomePriceData)
     // console.log(MedPriceHome)
+    document.getElementById("MedianHomeValue").innerHTML = "The Median Price for a home in this area is: $<b>"+
+    MedPriceHome + "</b>"
     return MedPriceHome;
     
 }
@@ -71,7 +74,9 @@ function calculateMortagePayment(Value){
     let taxes = (0.90*Value * 0.011)/12
     let MonthlyPayment = Math.round(mortgagePayment + insurance + taxes)
     console.log(MonthlyPayment)
-    document.getElementById("Mortgage").innerHTML = "The estimated monthly mortgage with 10% downpayment, taxes, and insurance in this area is: $<b>" + MonthlyPayment + "</b>"
+    document.getElementById("Mortgage").innerHTML =
+     "The estimated monthly mortgage with 10% downpayment, taxes, and insurance in this area is: $<b>" + 
+     MonthlyPayment + "</b>"
     return MonthlyPayment;
 }
 
@@ -127,13 +132,21 @@ function MakeGraph(MoneyArray){
     let lineData = [trace];
 
     let layout = {
-        title: "Savings Growth Over Time",
-        yaxis:{
-            title: "Growth of Money Invested"
+        font:{
+            family: "Helvetica",
+            size: 18,
+            // color: "e69138"
         },
+        title: "Savings Growth Over Time",
+       
+        yaxis:{
+            title: "Money Saved Over Time"
+        },
+            
         xaxis:{
-            title: "Time in Years"
-        }
+            title: "Time in Years",
+            },
+            
 
     }
     Plotly.newPlot("Calc_Summary_Graph", lineData, layout)
