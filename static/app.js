@@ -43,12 +43,6 @@ function linear_regression(input){
 
 // API call to the housing data and then creating a bar graph
 function apiCall(input) {
-
-    // WHY IS THIS HERE???
-    d3.json(`/sqlsearch/${input}`).then(function(data){
-        var info = data
-    });
-
     // API Key was free and the same for all users 
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // API call to grab the housing data then creating the graph

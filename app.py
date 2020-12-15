@@ -15,7 +15,7 @@ def index():
 
 @app.route("/calculation")
 def calc():
-    return render_template("templates/calculation.html")
+    return render_template("calculation.html")
 
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
