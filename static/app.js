@@ -11,6 +11,28 @@ var indicatorCodeRental = "ZRISFRR.json"
 function handleSubmit(){
     // prevent the page from reloading then grab the value the user input and empty the input value
     d3.event.preventDefault();
+    // user selects hometype from the dropdown menu
+    var userSelection=d3.select('#hometype').node().value;
+    // based on the user selection we will use a switch statement to choose the right indicator code for the API
+    var indicator='';
+    switch (userSelection){
+        case '1 Bedroom':
+            indicator='Z1BR';
+            break;
+        case '2 Bedroom':
+            indicator='Z2BR';
+            break;
+        case '3 Bedroom':
+            indicator='Z3BR';
+            break;
+        case '4 Bedroom':
+            indicator='Z4BR';
+            break;
+        case '5+ Bedrooms':
+            indicator='Z5BR';
+            break;
+    }
+    console.log(indicator);
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
