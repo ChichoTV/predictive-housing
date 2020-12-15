@@ -23,6 +23,11 @@ def sqlsearch(zipcode):
     C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018 where zipcode={zipcode}', connection)
     return C2018.to_json() 
 
+@app.route('/test_new_api/<home>')
+def api(home):
+    Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id=99999&api_key=74g3zUso-i7jUjwzzsgh')
+    return Response.json()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

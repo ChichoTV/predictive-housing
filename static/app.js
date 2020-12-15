@@ -36,7 +36,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
-    apiCall(userInput)
+    apiCall(indicator)
     apiCall(userInput);
     getDemoInfo(userInput)
     getHomes(userInput)
@@ -47,23 +47,19 @@ function handleSubmit(){
 // API call to the housing data and then creating a bar graph
 function apiCall(input) {
 
-    // WHY IS THIS HERE???
-    d3.json(`/sqlsearch/${input}`).then(function(data){
-        var info = data
-    });
-
-    // API Key was free and the same for all users 
-    var url = `https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id=${indicator}&region_id=99999&api_key=74g3zUso-i7jUjwzzsgh`
+    // API Key was free and the same for all users. THIS API HAS TO BE CALLED FROM THE BACK END TO AVOID 'CORS' ISSUES 
+    var url = (`/test_new_api/${input}`)
     // API call to grab the housing data then creating the graph
     d3.json(url).then(function (pulled) {
         // create lists and push the data to the list
+        console.log(pulled)
         var xprice = []
         var ydate = []
-        pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
-        pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
+        pulled.datatable.data.forEach(i => { ydate.push(i[2]) });
+        pulled.datatable.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
-        barT.append("h4").attr("class","well").text(pulled.dataset.name)
+        // barT.append("h4").attr("class","well").text(pulled.datatable.name)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
