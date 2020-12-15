@@ -66,9 +66,9 @@ function getMedianPrice(Price){
 function calculateMortagePayment(Value){
     let c = 0.05/12
     let t = 12*30
-    let mortgagePayment = (0.80 *Value)*((c*((1+c)**t))/(((1+c)**t)-1));
+    let mortgagePayment = (0.90 *Value)*((c*((1+c)**t))/(((1+c)**t)-1));
     let insurance = 1200/12;
-    let taxes = (0.80*Value * 0.011)/12
+    let taxes = (0.90*Value * 0.011)/12
     let MonthlyPayment = Math.round(mortgagePayment + insurance + taxes)
     console.log(MonthlyPayment)
     document.getElementById("Mortgage").innerHTML = "The estimated monthly mortgage with 10% downpayment, taxes, and insurance in this area is: $<b>" + MonthlyPayment + "</b>"
@@ -122,7 +122,7 @@ function MakeGraph(MoneyArray){
     let trace = {
         x : x,
         y : y,
-        type: "line"
+        type: "bar"
     }
     let lineData = [trace];
 
