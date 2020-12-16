@@ -16,10 +16,11 @@ function handleSubmit(){
     // kick off other function using the user input
     apiCall(userInput);
     apiCall(userInput);
-    getDemoInfo(userInput)
-    getHomes(userInput)
+    getDemoInfo(userInput);
+    getHomes(userInput);
     linear_regression(userInput);
 }
+
 
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
 function linear_regression(input){
