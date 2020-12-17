@@ -22,5 +22,5 @@ At the same time a call is maded to our SQL server based on the ZipCode entered 
 
 Lastly to comply with Zillow's terms of using thier API we created a button with JQuery that when clicked, routes you to the Zillow website. 
 
-Contributers: Michael Munson, Nathan Ashbough, Rafael Cespedes, Jordan Usner
+Contributers: Michael Munson, Nathan Ashbough, Taylor Vought, Rachel Harless, Kruti Gandhi
 UC Davis BootCamp 2020
