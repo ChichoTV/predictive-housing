@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyVsRenting</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <link rel="stylesheet" href="../static/css/style.css">
     <style>
         body, html {
           height: 100%;
           margin: 0;
                
           /* The image used */
-          background-image: url("https://images.unsplash.com/photo-1524813686514-a57563d77965?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+          background-image: url("data:image/jpeg;base64,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");
 
           /* Full height */
           height: 100%; 
@@ -26,15 +27,18 @@
           background-size: cover;
         }
     </style>
-    
-  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
   
 </head>
 <body>
-    <div class="container" style="background-color: lightgray; ">
+  <div class="topnav">
+    <a class="active" href="/">Home</a>
+    <a href="/calculation">Investment Calculator</a>
+    <a href="/amenity">Amenities</a>
+    <a href="#about">About</a>
+  </div>
         <div class="row">
           <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
             <h1 style="color: ivory;">Housing Purchase vs Rental Price Comparisons</h1>
@@ -78,13 +82,17 @@
                 <option>5+ Bedrooms</option>
               </select>
               <form action="">
-                <label for="userinput" id="searchLabel">Type Zipcode</label>
-                <input type="text" id="input" style='width: 100px' placeholder="95670"><br><br>
-                <input id="Submit" type="submit" value="Search">
+                <label for="userinput" id="searchLabel">Type Zipcode</label><br>
+                <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
+                <input id="Submit" type="submit" value="View Results">
+              </form>
+              <br>
+              <form action="">
+                <label for="NewWindow"></label>
+                <button onclick="window.open('/')">New Window</button>
               </form>
 
-                <!-- Can Delete this -->
-              <!-- <select id="selDataset" onchange="optionChanged(this.value)"></select> -->
+
             </div>
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -112,7 +120,7 @@
           </div>
         </div>
         <div class="row"> 
-          <div id = "contianerMap" class="col-md-12" style="border: rgb(139, 163, 187);">
+          <div id = "contianerMap" class="col-md-8" style="border: rgb(139, 163, 187);">
             <div id="map"  style="height: 400px;"></div>
           </div>
         </div>
@@ -132,9 +140,9 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
   <script type="text/javascript" src="static/app.js"></script>
@@ -143,6 +151,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
   <script type="text/javascript" src="/assets/config.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 
 </body>

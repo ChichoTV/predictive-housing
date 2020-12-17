@@ -36,19 +36,41 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
-    apiCall(indicator)
     apiCall(userInput);
-    getDemoInfo(userInput)
-    getHomes(userInput)
+    apiCall(userInput);
+    getDemoInfo(userInput);
+    getHomes(userInput);
+    linear_regression(userInput);
+    apiCall(indicator)
+}
+
+
+// TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
+function linear_regression(input){
+    var url=`https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2000-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
+    d3.json(`/regression/${input}`).then(function (predictions){
+        console.log(predictions)
+        predicted_data=Object.values(predictions)
+        predicted_years=Object.keys(predictions)
+        var trace = {
+            x : predicted_years,
+            y : predicted_data, 
+            type : 'bar',
+            name:'Predicted Values'
+        };
+        barData=[trace]
+        Plotly.addTraces('bar', trace);
+    })
 }
 
 // Function to search the 2018 cencus data we have stored in SQL a database
 
 // API call to the housing data and then creating a bar graph
 function apiCall(input) {
-
     // API Key was free and the same for all users. THIS API HAS TO BE CALLED FROM THE BACK END TO AVOID 'CORS' ISSUES 
     var url = (`/test_new_api/${input}`)
+    // API Key was free and the same for all users 
+    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // API call to grab the housing data then creating the graph
     d3.json(url).then(function (pulled) {
         // create lists and push the data to the list
@@ -64,7 +86,8 @@ function apiCall(input) {
         var trace = {
             x : ydate,
             y : xprice, 
-            type : 'bar'
+            type : 'bar',
+            name: '2017-2020'
         };
         // group the data 
         var barData = [trace];
@@ -74,7 +97,7 @@ function apiCall(input) {
             title : "House Price",
             yaxis : {
                 title : "Price of House" ,
-                range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.01]
+                range : [ d3.min(xprice) -d3.min(xprice) *.01 , d3.max(xprice) +d3.min(xprice) *.1]
             },
             xaxis : {
                 title : "Years"

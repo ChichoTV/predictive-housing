@@ -1,0 +1,64 @@
+body {
+    /* background-color: rgb(233, 240, 247); */
+    background-image: url('https://poausa.com/wp-content/uploads/2017/02/gradient-bg-300x200.jpg');
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    text-align: center
+}
+
+#title {
+    color: darkslateblue;
+    text-align: center
+}
+
+#subtitle {
+    color: darkslategray;
+    text-align: center
+}
+
+#Search {
+    color: darkblue;
+    display: block;
+    text-align:center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* body > .container > .col-md-12{} */
+
+.container{
+    /* background-color: white; */
+    /* border: green;
+    border-radius: 20px; */
+    /* border: 5px solid green; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+#RatesTitle{
+    color: darkgreen;
+    font-weight: bold;
+}
+#savingsNumber{
+    font-size: large;
+    color: red;
+    padding-bottom: 20px;
+    font-weight:bold
+}
+#Graph_Summary_Text{
+    color:darkgreen;
+    font-weight: bold;
+    font-size: large;
+}
+h4{
+    color: darkgreen;
+    font-weight: bold;
+}
+
+#Rent_Button{
+    text-align: center;
+}
