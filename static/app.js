@@ -36,7 +36,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
-    newTab();
+    newTab(userInput);
     apiCall(userInput);
     apiCall(userInput);
     getDemoInfo(userInput);
@@ -45,13 +45,14 @@ function handleSubmit(){
     apiCall(indicator)
 }
 
-function newTab () {
-    window.open('MarketData')
-    apiCall(userInput);
-    apiCall(userInput);
-    getDemoInfo(userInput);
-    getHomes(userInput);
-    linear_regression(userInput);
+function newTab (input) {
+    window.open('/MD')
+    apiCall(input);
+    apiCall(input);
+    getDemoInfo(input);
+    getHomes(input);
+    linear_regression(input);
+    console.log("Mike")
 }
 
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
@@ -289,4 +290,3 @@ function getHomes(input){
     })
 
 };
-//Merging Delete this

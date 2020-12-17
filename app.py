@@ -17,6 +17,10 @@ def index():
 def calc():
     return render_template("calculation.html")
 
+@app.route("/MD")
+def marketdata():
+    return render_template("MarketData.html")
+
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
     homes = pd.read_sql(f'select year_structure_built_1939_or_earlier, year_structure_built_1940_to_1949, year_structure_built_1950_to_1959, year_structure_built_1960_to_1969, year_structure_built_1970_to_1979, year_structure_built_1980_to_1989, year_structure_built_1990_to_1999, year_structure_built_2000_to_2009, year_structure_built_2010_to_2013, year_structure_built_2014_or_later, year_structure_built_total from census_2018 where zipcode={zipcode}', connection)
@@ -64,10 +68,6 @@ def regression(zipcode):
         return to_return
     except:
         return {}
-
-
-
-
 
 
 
