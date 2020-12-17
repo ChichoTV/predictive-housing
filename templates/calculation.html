@@ -4,8 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/calcstyle.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+        <div class="topnav" id="nav">
+            <a class="active" href="/">Home</a>
+            <a href="/calculation">Investment Calculator</a>
+            <a href="/amenity">Amenities</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
+              <h1 style="color: ivory;">Looking to Move? Should you rent or buy?</h1>
+              <h2 style="color: ivory;">Use our search to find out.</h2>
+            </div>
+          </div>
+          <div id = Search>
+            <form id = "searchForm" action="">
+              <label for="userinput" id="searchLabel">Type Zipcode</label>
+              <input type="text" id="input" style='width: 100px' placeholder="00000" style = "color: lightgray">
+              <input id="Submit" type="submit" value="Search">
+            </form>
+          </div>
+
+
+          <div class = "container">
+            <div class = "col-md-12">
+                <div class = "row">
+                    <h4 id = "RatesTitle"></h4>
+                </div> 
+                <div class = "row">
+                    <h5 id = "Rent"></h5>
+                    <h5 id = "MedianHomeValue"></h5>
+                    <h5 id = "Mortgage"></h5>
+                </div> 
+            </div>
+        </div>
+        <div id = "savingsNumber"></div>
+            
+       <div class = "container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="Calc_Summary_Graph"></div>
+                </div>
+            </div>
+        </div>
+        <div id = SavingsSummaryContainer class = "container">
+            <p id = "Graph_Summary_Text"></p>
+        </div>
+        
+        <div class = "container">
+            <div class = "row">
+                <div class="col-md-4">
+                <!-- <div class="well"> -->
+                    <button id = "Sales_Button" value = "Open Window" onclick="window.open('https:www.zillow.com/homes/')">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.oI9iu8HvlnQNMjOaA2FScQHaGq&pid=Api&P=0&w=205&h=186" alt="Zillow" width="100" height="100"><br>
+                        Zillow Listings For Sale
     
+                    </div>
+            <!-- </div> -->
+                <div class="col-md-4">
+                    <!-- <div class="well"> -->
+                        <button id = "Rent_Button" value = "Open Window" onclick="window.open('https:www.zillow.com/homes/for_rent/')">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.oI9iu8HvlnQNMjOaA2FScQHaGq&pid=Api&P=0&w=205&h=186" alt="Zillow" width="100" height="100"><br>
+                        Zillow Listings For Rent
+    
+                    <!-- </div> -->
+                </div>
+                <div class="col-md-4">
+                    <!-- <div class="well"> -->
+                        <button id = "MortgageCalculator" value = "Open Window" onclick="window.open('https:www.daveramsey.com/mortgage-calculator')">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIUS0824EZ-y46Im1fWYUZvEb0RbAo4_Ti-g&usqp=CAU" alt="MortgageCalculator" width="100" height="100"><br>
+                        Use Dave Ramsey's <br> Mortgage Calculator 
+    
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+
+    <script type="text/javascript" src="static/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/calc.js"></script>
 </body>
 </html>
