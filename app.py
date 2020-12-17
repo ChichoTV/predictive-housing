@@ -6,7 +6,7 @@ import json
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 
-engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
+engine = create_engine('postgresql://MasterUser:Bootcamp123@predictivehousingvsrental.cx0mfruhncd6.us-east-2.rds.amazonaws.com:5432/postgres')
 connection = engine.connect()
 Base=automap_base()
 Base.prepare(engine,reflect=True)
