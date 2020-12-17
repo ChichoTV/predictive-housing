@@ -3,3 +3,6 @@
     color: black;
 }
 
+.horizontal-scroll-wrapper {
+    transform:rotate(-90deg) translateY(-100px);
+  }

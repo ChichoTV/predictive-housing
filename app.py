@@ -97,13 +97,8 @@ def weatherAPI(latlon):
     foreHour= info['properties']['forecastHourly']
     # Pull forecast data
     forecast = weather(fore)
-    forecastHour = weather(foreHour)
-    # use second definition to format forecast api data 
-    forcastDay = pullData(forecast)
-    forcast_Hour = pullData(forecastHour)
-    # put two dataframes into a sinlge dictionary 
-    forecastreturn = {"day": forcastDay, "Hour" : forcast_Hour}
-    return  forecastreturn
+    forecastHour = weather(foreHour).json()
+    return  forecastHour
 
 
 if __name__ == '__main__':

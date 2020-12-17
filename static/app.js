@@ -245,7 +245,8 @@ function getHomes(input){
 // Weather Code 
 function getWeather(latlon){
     d3.json(`/weather/${latlon}`).then(function(data){
-        console.log(data)
+        console.log(data[1])
+        console.log(data[0])
     })
 }
 
