@@ -14,6 +14,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
+    newTab();
     apiCall(userInput);
     apiCall(userInput);
     getDemoInfo(userInput);
@@ -21,6 +22,14 @@ function handleSubmit(){
     linear_regression(userInput);
 }
 
+function newTab () {
+    window.open('MarketData')
+    apiCall(userInput);
+    apiCall(userInput);
+    getDemoInfo(userInput);
+    getHomes(userInput);
+    linear_regression(userInput);
+}
 
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
 function linear_regression(input){
