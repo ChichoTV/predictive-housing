@@ -293,7 +293,14 @@ function getHomes(input){
 // Weather Code 
 function getWeather(latlon){
     d3.json(`/weather/${latlon}`).then(function(data){
-        console.log(data[1])
-        console.log(data[0])
+        console.log(data.properties.periods.name)
+        console.log("Blue Balls")
+        data.properties.periods.forEach(i => {
+            d3.select("#name").html("").append('h4').text(i.name)
+        })
     })
 }
+
+getWeather("39.21537,-121.20125")
+
+

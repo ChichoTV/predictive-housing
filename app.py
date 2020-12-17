@@ -23,7 +23,7 @@ def index():
 def calc():
     return render_template("calculation.html")
 
-@app.route("/amenities")
+@app.route("/amenity")
 def amenities():
     return render_template("Amenities.html")
 
@@ -107,9 +107,9 @@ def weatherAPI(latlon):
     fore = info['properties']['forecast']
     foreHour= info['properties']['forecastHourly']
     # Pull forecast data
-    forecast = weather(fore)
+    forecast = weather(fore).json()
     forecastHour = weather(foreHour).json()
-    return  forecastHour
+    return  forecast
 
 
 if __name__ == '__main__':
