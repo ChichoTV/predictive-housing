@@ -71,6 +71,11 @@ def regression(zipcode):
 
 
 
+@app.route('/test_new_api/<home>')
+def api(home):
+    Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id=99999&api_key=74g3zUso-i7jUjwzzsgh')
+    return Response.json()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

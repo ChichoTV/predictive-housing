@@ -7,10 +7,32 @@ var count = 0
 var indicatorCodePrice = 'ZHVISF'
 var indicatorCodeRental = "ZRISFRR.json"
 
+ // user selects hometype from the dropdown menu
+ var userSelection=d3.select('#hometype').node().value;
+ // based on the user selection we will use a switch statement to choose the right indicator code for the API
+ var indicator='';
+ switch (userSelection){
+     case '1 Bedroom':
+         indicator='Z1BR';
+         break;
+     case '2 Bedroom':
+         indicator='Z2BR';
+         break;
+     case '3 Bedroom':
+         indicator='Z3BR';
+         break;
+     case '4 Bedroom':
+         indicator='Z4BR';
+         break;
+     case '5+ Bedrooms':
+         indicator='Z5BR';
+         break;
+ }
 // When the user selects the search button this is the first function called
 function handleSubmit(){
     // prevent the page from reloading then grab the value the user input and empty the input value
     d3.event.preventDefault();
+    // console.log(indicator);
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
@@ -20,6 +42,7 @@ function handleSubmit(){
     getDemoInfo(userInput);
     getHomes(userInput);
     linear_regression(userInput);
+    apiCall(indicator)
 }
 
 function newTab () {
@@ -53,18 +76,21 @@ function linear_regression(input){
 
 // API call to the housing data and then creating a bar graph
 function apiCall(input) {
+    // API Key was free and the same for all users. THIS API HAS TO BE CALLED FROM THE BACK END TO AVOID 'CORS' ISSUES 
+    var url = (`/test_new_api/${input}`)
     // API Key was free and the same for all users 
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // API call to grab the housing data then creating the graph
     d3.json(url).then(function (pulled) {
         // create lists and push the data to the list
+        console.log(pulled)
         var xprice = []
         var ydate = []
-        pulled.dataset.data.forEach(i => { ydate.push(i[0]) });
-        pulled.dataset.data.forEach(i => { xprice.push(i[1]) });
+        pulled.datatable.data.forEach(i => { ydate.push(i[2]) });
+        pulled.datatable.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
-        barT.append("h4").attr("class","well").text(pulled.dataset.name)
+        // barT.append("h4").attr("class","well").text(pulled.datatable.name)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
@@ -263,3 +289,4 @@ function getHomes(input){
     })
 
 };
+//Merging Delete this
