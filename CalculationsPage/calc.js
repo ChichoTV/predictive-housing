@@ -1,3 +1,5 @@
+
+
 var areaCategory = "Z"
 var indicatorCodePrice = 'ZHVISF'
 var indicatorCodeRental = "ZRISFRR.json"
@@ -6,23 +8,23 @@ var indicatorCodeRental = "ZRISFRR.json"
 var userInput = d3.select('#input').node().value;
 // var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
 // var urlRental = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodeRental}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
-
+var userInputHolder;
 function handleSubmit(){
     // prevent the page from reloading then grab the value the user input and empty the input value
     d3.event.preventDefault();
     var userInput = d3.select('#input').node().value;
+    userInputHolder = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
     let MedianRentalPrice = APIRentalCall(userInput);
     let MedianHomeValue = APIHomePriceCall(userInput);
     let MonthlyMortgagePayment = calculateMortagePayment(MedianHomeValue);
     let MonthlySavings = bestvalue(MonthlyMortgagePayment, MedianRentalPrice); 
-    let MoneyGrowthArray = investmentCalculator(MonthlySavings) 
-    MakeGraph(MoneyGrowthArray) 
-    SummaryGraphText(MonthlySavings)
+    let MoneyGrowthArray = investmentCalculator(MonthlySavings); 
+    MakeGraph(MoneyGrowthArray);
+    SummaryGraphText(MonthlySavings);
+    
 }
-
-d3.select('#Submit').on('click' , handleSubmit);
 
 function APIRentalCall(input){
     var urlRental = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodeRental}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
@@ -158,4 +160,15 @@ function SummaryGraphText(SavingsAmount){
 
 }
 
+function UpdateZillowSalesURL(){
+    window.open(`http://www.zillow.com/homes/${userInputHolder}_rb`, "_blank")
+    
+}
 
+function UpdateZillowRentURL(){
+    window.open(`http://www.zillow.com/homes/for_rent/${userInputHolder}_rb`, "_blank")
+}
+
+d3.select('#Submit').on('click' , handleSubmit);
+d3.select("Rent_Button").on("click", UpdateZillowRentURL);
+d3.select("Sales_Button").on("click", UpdateZillowSalesURL);
