@@ -77,8 +77,8 @@ function apiCall(input) {
         console.log(pulled)
         var xprice = []
         var ydate = []
-        pulled.datatable.data.forEach(i => { ydate.push(i[2]) });
-        pulled.datatable.data.forEach(i => { xprice.push(i[3]) });
+        pulled.dataset.data.forEach(i => { ydate.push(i[2]) });
+        pulled.dataset.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
         // barT.append("h4").attr("class","well").text(pulled.datatable.name)
