@@ -3,6 +3,11 @@ import requests
 import pandas as pd
 from sqlalchemy import create_engine
 import json
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import numpy as np
+import datetime as dt
+import dateutil
 
 engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
 connection = engine.connect()
@@ -13,9 +18,15 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
 @app.route("/calculation")
 def calc():
     return render_template("calculation.html")
+
+@app.route("/amenities")
+def amenities():
+    return render_template("Amenities.html")
+
 
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
@@ -26,7 +37,7 @@ def homes(zipcode):
 def sqlsearch(zipcode):
     C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018 where zipcode={zipcode}', connection)
     return C2018.to_json() 
-    
+
 @app.route("/regression/<zipcode>")
 def regression(zipcode):
     # test api starting at the year 2017 to match the current graphs
@@ -66,15 +77,39 @@ def regression(zipcode):
         return {}
 
 
-
-
-
-
-
 @app.route('/test_new_api/<home>')
 def api(home):
     Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id=99999&api_key=74g3zUso-i7jUjwzzsgh')
     return Response.json()
+
+@app.route("/weather/<latlon>")
+def weatherAPI(latlon):
+    # Api Call, will be used once for the initial pull then 2 more times to get
+    # Daily forecast and then Hourly Forecast
+    def weather(url):
+        headers = {
+            'x-rapidapi-key': "76d2396840mshc562c26618d33a2p1fb1e6jsn95b66aa3ea3c",
+            'x-rapidapi-host': "national-weather-service.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        return response 
+    # Used to format Forecasted data
+    def pullData(item):
+        Jsoned = item.json()
+        DataFramed = pd.DataFrame(Jsoned["properties"]['periods'])
+        return DataFramed 
+    # Initial API used to pull down area details using Lat and Lon
+    url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
+    firstPull = weather(url)
+    # Format first pull then get API url to call both forecasts 
+    info = firstPull.json()
+    fore = info['properties']['forecast']
+    foreHour= info['properties']['forecastHourly']
+    # Pull forecast data
+    forecast = weather(fore)
+    forecastHour = weather(foreHour).json()
+    return  forecastHour
 
 
 if __name__ == '__main__':
