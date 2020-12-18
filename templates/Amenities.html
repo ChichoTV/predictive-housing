@@ -47,57 +47,21 @@
           </div>
         </div>
         <div class = "row">
-          <div class="container-fluid">
+          <div class="container">
             <h2>Bootstrap Horizontal Scrolling with Flexbox</h2>
-            <div class="row flex-nowrap inpageScroll">
-                <div class="col-2">
-                    <div id="name" class="card card-block">Card</div>
+            <div id="name" class="row flex-nowrap inpageScroll tile-div">
+                <div class="col-3 ">
+                    <div class="card card-block isDay" style="padding: 10px;">
+                  <img src="https://api.weather.gov/icons/land/night/few?size=medium" class="img-rounded card-img" alt="Weather Image">
+                  <br>
+                  <b> Wednesday Night </b></div>
                 </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-2">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
-                <div class="col-3">
-                    <div class="card card-block">Card</div>
-                </div>
+                <div class="col-3 ">
+                  <div class="card card-block isNight">
+                  <br>
+                  <h3>Tonight</h3>
+                     </div>
+              </div>
             </div>
         </div>
         </div>
@@ -170,6 +134,7 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
   <script type="text/javascript" src="static/app.js"></script>
+  <script type="text/javascript" src="static/weather.js"></script>
   <script type="text/javascript" src="../app.py"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />

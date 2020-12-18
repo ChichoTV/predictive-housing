@@ -238,6 +238,8 @@ d3.select('#Submit').on('click' , handleSubmit);
 d3.selectAll('#main').on('change' , category)
 
 
+var globalLat ; 
+var globalLon ;
 // function to build Market Highlights
 function getDemoInfo(input){
     // grab 2018 cencus data
@@ -253,6 +255,8 @@ function getDemoInfo(input){
         });
         // call function to create the map Send lat and lng with it
         createMap(info2.lat[0] , info2.lng[0])
+        globalLat = info2.lat[0]
+        globalLon = info2.lng[0]
     })
 }
 
@@ -290,17 +294,11 @@ function getHomes(input){
 
 };
 
-// Weather Code 
-function getWeather(latlon){
-    d3.json(`/weather/${latlon}`).then(function(data){
-        console.log(data.properties.periods.name)
-        console.log("Blue Balls")
-        data.properties.periods.forEach(i => {
-            d3.select("#name").html("").append('h4').text(i.name)
-        })
-    })
+function openAmenities() {
+
+    if( globalLon){
+        window.open("/amenity?" +globalLat+","+ globalLon )
+    }
+    window.open("/amenity?39.21537,-121.20125" )
+    
 }
-
-getWeather("39.21537,-121.20125")
-
-

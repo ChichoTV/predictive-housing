@@ -106,3 +106,26 @@
  
     overflow: scroll;
 }
+
+.tile-div {
+  padding: 25px;
+}
+
+.card-img{
+  height: 100%;
+  padding-right: 50px;
+  /* padding-left: 25px; */
+  align-items: right;
+}
+
+.isDay {
+  background-color: lightyellow;
+  font-size: large;
+
+}
+
+.isNight {
+  background-color: lightblue;
+  color: black;
+  font-size: large;
+}
