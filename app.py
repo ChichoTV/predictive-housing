@@ -22,12 +22,12 @@ def calc():
 
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
-    homes = pd.read_sql(f'select year_structure_built_1939_or_earlier, year_structure_built_1940_to_1949, year_structure_built_1950_to_1959, year_structure_built_1960_to_1969, year_structure_built_1970_to_1979, year_structure_built_1980_to_1989, year_structure_built_1990_to_1999, year_structure_built_2000_to_2009, year_structure_built_2010_to_2013, year_structure_built_2014_or_later, year_structure_built_total from census_2018 where zipcode={zipcode}', connection)
+    homes = pd.read_sql(f'select year_structure_built_1939_or_earlier, year_structure_built_1940_to_1949, year_structure_built_1950_to_1959, year_structure_built_1960_to_1969, year_structure_built_1970_to_1979, year_structure_built_1980_to_1989, year_structure_built_1990_to_1999, year_structure_built_2000_to_2009, year_structure_built_2010_to_2013, year_structure_built_2014_or_later, year_structure_built_total from public.census_2018 where zipcode={zipcode}', connection)
     return homes.to_json() 
 
 @app.route("/sqlsearch/<zipcode>")  
 def sqlsearch(zipcode):
-    C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from census_2018 where zipcode={zipcode}', connection)
+    C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from public.census_2018 where zipcode={zipcode}', connection)
     return C2018.to_json() 
     
 @app.route("/regression/<home_zipcode>")
