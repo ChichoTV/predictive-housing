@@ -83,7 +83,6 @@ function apiCall(input) {
     // API call to grab the housing data then creating the graph
     d3.json(url).then(function (pulled) {
         // create lists and push the data to the list
-        console.log(pulled)
         var xprice = []
         var ydate = []
         pulled.datatable.data.forEach(i => { ydate.push(i[2]) });
