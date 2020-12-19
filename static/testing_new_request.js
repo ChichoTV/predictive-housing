@@ -8,16 +8,15 @@ function on_submit(){
     userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     userSelection = d3.select('#hometype').node().value;
-    let pulled_data = Sales_API_Call(userInput, userSelection);
+    let pulled_data = Sales_API_Call(userInput);
     BuildSalesGraph(pulled_data);
+    linear_regression(indicator,userInput);
 }
-function Sales_API_Call(input , indicator){
+function Sales_API_Call(input){
     // grabbing zip code from search
     // console.log(userInput);
     // user selects hometype from the dropdown menu
-    userSelection=d3.select('#hometype').node().value;
     // based on the user selection we will use a switch statement to choose the right indicator code for the API
-    indicator='';
     switch (userSelection){
         case '1 Bedroom':
             indicator='Z1BR';
@@ -36,7 +35,7 @@ function Sales_API_Call(input , indicator){
             break;
     }
     console.log(indicator);
-    var url =  `https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id=${input}&region_id=${indicator}&api_key=74g3zUso-i7jUjwzzsgh`
+    var url = `/test_new_api/${indicator}&${userInput}`
     // var original_url = `/test_new_api/${indicator}&${input}`
     var xhReq1 = new XMLHttpRequest();
     xhReq1.open("GET", url, false);
@@ -75,4 +74,22 @@ function BuildSalesGraph(pulled){
         };
         // Plot the graph
         Plotly.newPlot('bar', barData , layout );
+
 }
+function linear_regression(ind,zip){
+    d3.json(`/regression/${ind}&${zip}`).then(function (predictions){
+        console.log(predictions)
+        predicted_data=Object.values(predictions)
+        predicted_years=Object.keys(predictions)
+        var trace = {
+            x : predicted_years,
+            y : predicted_data,
+            type : 'bar',
+            name:'Predicted Values'
+        };
+        barData=[trace]
+        Plotly.addTraces('bar', trace);
+    })
+}
+
+d3.select('#Submit').on('click' , on_submit);
