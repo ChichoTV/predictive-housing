@@ -38,7 +38,7 @@ function on_submit(){
         pulled.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
-        // barT.append("h4").attr("class","well").text(pulled.datatable.name)
+        barT.append("h4").attr("class","well").text(`Zillow Median Price - ${userSelection} - ${userInput}`)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
@@ -106,7 +106,8 @@ function on_submit(){
                     width: 4,
                     dash:'dot'
                 }
-            } 
+            }
+
         // Find the min and the max values, we want to include the line 
         var minRent = d3.min(xprice)
         if (medIncome < minRent ){
@@ -136,8 +137,42 @@ function on_submit(){
         };
         // plot the graph 
         Plotly.newPlot('gauge', barData , layout );
+        var marketInfo = d3.select("#sample-metadata");
+        // clear HTML that is there 
+        marketInfo.html("");
+        // Fill with highlights from SQL 2018 cencus data 
+        Object.entries(info1).forEach((key) => {   
+        marketInfo.append("h5").text(key[0].toUpperCase().replace("_", " ").replace("_", " ") + ": " + key[1][0] + "\n");
+        });
     })
-    })
+    d3.json(`/homes/${userInput}`).then(function(data){
+        var info3 = data
+        var y1939 = (info3.year_structure_built_1939_or_earlier[0])
+        var y1940 = (info3.year_structure_built_1940_to_1949[0])
+        var y1950 = (info3.year_structure_built_1950_to_1959[0])
+        var y1960 = (info3.year_structure_built_1960_to_1969[0])
+        var y1970 = (info3.year_structure_built_1970_to_1979[0])
+        var y1980 = (info3.year_structure_built_1980_to_1989[0])
+        var y1990 = (info3.year_structure_built_1990_to_1999[0])
+        var y2000 = (info3.year_structure_built_2000_to_2009[0])
+        var y2010 = (info3.year_structure_built_2010_to_2013[0])
+        var y2014 = (info3.year_structure_built_2014_or_later[0])
 
+        var data = [{
+            type: 'pie',
+            values: [y1939, y1940, y1950, y1960, y1970, y1980, y1990, y2000, y2010, y2014],
+            labels: ["Before 1940", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010-13", "2014 & newer"],
+            // textinfo: "label+percent",
+            textposition: 'outside',
+            automargin: true 
+        }]
+        var layout3 = {
+            title: `Pie Chart for the Years Structures Built in Zip Code ${userInput}`,
+            showlegend: true,
+        }
+        Plotly.newPlot("piechart", data, layout3);
+                
+    })
+    })
 }
 d3.select('#Submit').on('click' , on_submit);
