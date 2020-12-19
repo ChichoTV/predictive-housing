@@ -38,7 +38,7 @@ function on_submit(){
         pulled.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
-        // barT.append("h4").attr("class","well").text(pulled.datatable.name)
+        barT.append("h4").attr("class","well").text(`Zillow Median Price - ${userSelection} - ${userInput}`)
         // create a trace for the houing graph
         var trace = {
             x : ydate,
@@ -107,6 +107,14 @@ function on_submit(){
                     dash:'dot'
                 }
             } 
+            var marketInfo = d3.select("#sample-metadata");
+            // clear HTML that is there 
+            marketInfo.html("");
+            // Fill with highlights from SQL 2018 cencus data 
+            Object.entries(info1).forEach((key) => {   
+            marketInfo.append("h5").text(key[0].toUpperCase().replace("_", " ").replace("_", " ") + ": " + key[1][0] + "\n");
+            });
+
         // Find the min and the max values, we want to include the line 
         var minRent = d3.min(xprice)
         if (medIncome < minRent ){
