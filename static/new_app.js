@@ -175,4 +175,13 @@ function on_submit(){
     })
     })
 }
+
+function openAmenities() {
+
+    if( globalLon){
+        window.open("/amenity?" +globalLat+","+ globalLon )
+    }
+    window.open("/amenity?39.21537,-121.20125" )
+    
+}
 d3.select('#Submit').on('click' , on_submit);

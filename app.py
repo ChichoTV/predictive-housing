@@ -20,7 +20,7 @@ def index():
 def calc():
     return render_template("calculation.html")
 
-    @app.route("/amenity")
+@app.route("/amenity")
 def amenities():
     return render_template("Amenities.html")
 
