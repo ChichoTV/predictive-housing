@@ -143,8 +143,9 @@ function on_submit(){
         // Fill with highlights from SQL 2018 cencus data 
         Object.entries(info1).forEach((key) => {   
         marketInfo.append("h5").text(key[0].toUpperCase().replace("_", " ").replace("_", " ") + ": " + key[1][0] + "\n");
-        globalLat = info2.lat[0]
-        globalLon = info2.lng[0]
+        globalLat = info1.lat[0]
+        globalLon = info1.lng[0]
+        createMap(info1.lat[0] , info1.lng[0])
         });
 
     })
