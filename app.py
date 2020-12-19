@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template, redirect, url_for, Response
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
-import json
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 
