@@ -94,11 +94,6 @@ def weatherAPI(latlon):
 
         response = requests.request("GET", url, headers=headers)
         return response 
-    # Used to format Forecasted data
-    def pullData(item):
-        Jsoned = item.json()
-        DataFramed = pd.DataFrame(Jsoned["properties"]['periods'])
-        return DataFramed 
     # Initial API used to pull down area details using Lat and Lon
     url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
     firstPull = weather(url)
@@ -108,9 +103,29 @@ def weatherAPI(latlon):
     foreHour= info['properties']['forecastHourly']
     # Pull forecast data
     forecast = weather(fore).json()
-    forecastHour = weather(foreHour).json()
     return  forecast
 
+@app.route("/weatherhour/<latlon>")
+def weatherhourly(latlon):
+    # Api Call, will be used once for the initial pull then 2 more times to get
+    # Daily forecast and then Hourly Forecast
+    def weatherH(url):
+        headers = {
+            'x-rapidapi-key': "76d2396840mshc562c26618d33a2p1fb1e6jsn95b66aa3ea3c",
+            'x-rapidapi-host': "national-weather-service.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        return response 
+    # Initial API used to pull down area details using Lat and Lon
+    url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
+    firstPull = weatherH(url)
+    # Format first pull then get API url to call both forecasts 
+    info = firstPull.json()
+    foreHour= info['properties']['forecastHourly']
+    # Pull forecast data
+    forecastHour = weatherH(foreHour).json()
+    return  forecastHour
 
 if __name__ == '__main__':
     app.run(debug=True)
