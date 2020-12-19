@@ -30,18 +30,21 @@ def sqlsearch(zipcode):
     C2018 = pd.read_sql(f'select zipcode, median_age, median_household_income, poverty_rate, lat, lng, city, state_id from public.census_2018 where zipcode={zipcode}', connection)
     return C2018.to_json() 
     
-@app.route("/regression/<zipcode>")
-def regression(zipcode):
-    # test api starting at the year 2017 to match the current graphs
-    test_url=f'https://www.quandl.com/api/v3/datasets/ZILLOW/Z{zipcode}_ZHVISF?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz'
-    response=requests.get(test_url).json()
+@app.route("/regression/<home_zipcode>")
+def regression_api(home_zipcode):
+    session=Session(engine)
+    home=home_zipcode.split('&')[0]
+    zipcode=home_zipcode.split('&')[1]
+    region=session.query(regions.region_id).filter(regions.zip==zipcode).all()[0][0]
+    Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id={region}&api_key=74g3zUso-i7jUjwzzsgh').json()
+    
     try:
-        data=response['dataset']['data']
+        data=Response['datatable']['data']
         def pull_price(n):
-            return [n[1]]
+            return [n[3]]
     # date must be converted to ordinal since its a numeric value which regression requires
         def pull_dates(n):
-            return [dt.datetime.strptime(n[0], '%Y-%m-%d').toordinal()]
+            return [dt.datetime.strptime(n[2], '%Y-%m-%d').toordinal()]
         dates=list(map(pull_dates,data))
         prices=list(map(pull_price,data))
         y=np.array(prices)
@@ -87,4 +90,4 @@ def api(home_zipcode):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 
