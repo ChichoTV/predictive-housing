@@ -2,11 +2,14 @@ from flask import Flask, jsonify, render_template, redirect, url_for, Response
 import requests
 import pandas as pd
 from sqlalchemy import create_engine
-import json
+from sqlalchemy.orm import Session
+from sqlalchemy.ext.automap import automap_base
 
-engine = create_engine('postgresql://admin2:12345@localhost:5432/Project_2')
+engine = create_engine('postgresql://MasterUser:Bootcamp123@predictivehousingvsrental.cx0mfruhncd6.us-east-2.rds.amazonaws.com:5432/postgres')
 connection = engine.connect()
-
+Base=automap_base()
+Base.prepare(engine,reflect=True)
+regions=Base.classes.regions
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,10 +19,6 @@ def index():
 @app.route("/calculation")
 def calc():
     return render_template("calculation.html")
-
-@app.route("/MD")
-def marketdata():
-    return render_template("MarketData.html")
 
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
@@ -70,11 +69,21 @@ def regression(zipcode):
         return {}
 
 
-
-@app.route('/test_new_api/<home>')
-def api(home):
-    Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id=99999&api_key=74g3zUso-i7jUjwzzsgh')
-    return Response.json()
+@app.route('/test_new_api/<home_zipcode>')
+def api(home_zipcode):
+    session=Session(engine)
+    home=home_zipcode.split('&')[0]
+    zipcode=home_zipcode.split('&')[1]
+    region=session.query(regions.region_id).filter(regions.zip==zipcode).all()[0][0]
+    Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id={region}&api_key=74g3zUso-i7jUjwzzsgh').json()
+    to_return={'data':[]}
+    for item in Response['datatable']['data']:
+        if int(item[2].split('-')[0])>=2017:
+            to_return['data'].append(item)
+        else:
+            pass
+    session.close()
+    return to_return
 
 
 if __name__ == '__main__':

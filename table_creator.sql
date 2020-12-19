@@ -52,7 +52,7 @@ indicator VARCHAR(255),
 category VARCHAR(255)
 );
 
-
+ALTER TABLE census_2018 ADD PRIMARY KEY (zipcode)
 	
 SELECT * FROM census_2018;
 SELECT * FROM regions

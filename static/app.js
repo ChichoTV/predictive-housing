@@ -36,7 +36,7 @@ function handleSubmit(){
     var userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     // kick off other function using the user input
-    newTab(userInput);
+    // newTab();
     apiCall(userInput);
     apiCall(userInput);
     getDemoInfo(userInput);
@@ -45,15 +45,14 @@ function handleSubmit(){
     apiCall(indicator)
 }
 
-function newTab (input) {
-    window.open('/MD')
-    apiCall(input);
-    apiCall(input);
-    getDemoInfo(input);
-    getHomes(input);
-    linear_regression(input);
-    console.log("Mike")
-}
+// function newTab () {
+//     window.open('MarketData')
+//     apiCall(userInput);
+//     apiCall(userInput);
+//     getDemoInfo(userInput);
+//     getHomes(userInput);
+//     linear_regression(userInput);
+// }
 
 // TESTING THE LINEAR REGRESSION API CALL. MAKING A FUNCTION THAT GRABS THE ZIPCODE AND USES IT FOR THE REGRESSION CALCULATION
 function linear_regression(input){
@@ -77,8 +76,8 @@ function linear_regression(input){
 
 // API call to the housing data and then creating a bar graph
 function apiCall(input) {
-    // API Key was free and the same for all users. THIS API HAS TO BE CALLED FROM THE BACK END TO AVOID 'CORS' ISSUES 
-    var url = (`/test_new_api/${input}`)
+    // THIS API HAS TO BE CALLED FROM THE BACK END TO AVOID 'CORS' ISSUES 
+    // var url = (`/test_new_api/${input}`)
     // API Key was free and the same for all users 
     var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
     // API call to grab the housing data then creating the graph
@@ -87,8 +86,8 @@ function apiCall(input) {
         console.log(pulled)
         var xprice = []
         var ydate = []
-        pulled.datatable.data.forEach(i => { ydate.push(i[2]) });
-        pulled.datatable.data.forEach(i => { xprice.push(i[3]) });
+        pulled.dataset.data.forEach(i => { ydate.push(i[2]) });
+        pulled.dataset.data.forEach(i => { xprice.push(i[3]) });
         // Write the name of the API pull above the bar graph
         var barT = d3.select('#barText').html("")
         // barT.append("h4").attr("class","well").text(pulled.datatable.name)
@@ -290,3 +289,4 @@ function getHomes(input){
     })
 
 };
+//Merging Delete this
