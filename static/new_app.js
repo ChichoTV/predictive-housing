@@ -1,5 +1,7 @@
 var areaCategory = "Z";
 var indicatorCodeRental = "ZRISFRR.json";
+var globalLat ; 
+var globalLon ;
 function on_submit(){
     d3.event.preventDefault();
     // grabbing zip code from search
