@@ -1,5 +1,3 @@
-
-
 var areaCategory = "Z"
 var indicatorCodePrice = 'ZHVISF'
 var indicatorCodeRental = "ZRISFRR.json"
@@ -166,7 +164,9 @@ function UpdateZillowSalesURL(){
 }
 
 function UpdateZillowRentURL(){
-    window.open(`http://www.zillow.com/homes/for_rent/${userInputHolder}_rb`, "_blank")
+    window.open(`http://www.zillow.com/homes/for_rent/${userInputHolder}_rb`, "_blank");
+    
+
 }
 
 d3.select('#Submit').on('click' , handleSubmit);
