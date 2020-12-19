@@ -40,3 +40,98 @@
 		margin-top:13px;
 } */
 
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-button {
+  width: 1px;
+  height: 1px;
+}
+
+body {
+  background: #111;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.horizontal-scroll-wrapper {
+  /* position: absolute; */
+  display: block;
+  top: 25px;
+  left: 25px;
+  width: calc(250px + 1px);
+  max-height: 750px;
+  margin: 10px;
+  padding-top: 10px;
+  background: teal;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transform: rotate(-90deg) translateY(-250px);
+          transform: rotate(-90deg) translateY(-250px);
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+}
+.horizontal-scroll-wrapper > div {
+  display: block;
+  padding: 25px;
+  background: #cab;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+}
+
+.squares {
+  padding: 250px 0 0 0;
+}
+.squares > div {
+  width: 250px;
+  height: 250px;
+  margin: 10px 0;
+}
+
+
+
+.card-block {
+  min-height: 300px;
+  
+}
+
+.inpageScroll {
+
+  overflow: scroll;
+}
+
+.tile-div {
+padding: 25px;
+}
+
+.card-img{
+height: 100%;
+padding-right: 50px;
+/* padding-left: 25px; */
+align-items: right;
+}
+
+.isDay {
+background-color: lightyellow;
+font-size: large;
+
+}
+
+.isNight {
+background-color: lightblue;
+color: black;
+font-size: large;
+}
+
+#map {
+margin: auto;
+width: 60%;
+border: 5px solid #FFFF00;
+padding: 10px;
+}
