@@ -99,12 +99,18 @@
 
 .card-block {
     min-height: 300px;
-    
+    border-style: solid  ;
+    border-color : black;
+    border-width: 2px; 
+
 }
 
 .inpageScroll {
- 
-    overflow: scroll;
+  padding: 50px;
+  overflow: scroll;
+  background-color: lightskyblue;
+  border-radius: 8px;
+  border : 5px inset lightblue 
 }
 
 .tile-div {
@@ -114,8 +120,11 @@
 .card-img{
   height: 100%;
   padding-right: 50px;
-  /* padding-left: 25px; */
-  align-items: right;
+  align-items: center;
+  max-height: 200px;
+  max-width: 200px;
+
+  
 }
 
 .isDay {
@@ -133,7 +142,16 @@
 #map {
   margin: auto;
   width: 60%;
-  border: 5px solid #FFFF00;
   padding: 10px;
 }
 
+#weatherBar {
+  margin: auto;
+  width : 60%;
+  padding : 10px;
+  height: 500px;
+}
+
+.Wborders {
+  border : 5px inset burlywood; 
+}

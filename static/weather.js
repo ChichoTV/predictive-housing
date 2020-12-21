@@ -24,10 +24,10 @@ function getHWeather(latlon){
         movingMean[Htemp.length-1] = data.properties.periods[Htemp.length-1].temperature
         movingMean[Htemp.length-2] = data.properties.periods[Htemp.length-2].temperature
 
-        for(var i = 2; i < Htemp.length -2; i++) {
-            var mean =  Math.round(( data.properties.periods[i].temperature +data.properties.periods[i+2].temperature + data.properties.periods[i-1].temperature +  data.properties.periods[i-2].temperature + data.properties.periods[i+1].temperature)/5,2)
-            movingMean[i] =mean
-        }
+        // for(var i = 2; i < Htemp.length -2; i++) {
+        //     var mean =  Math.round(( data.properties.periods[i].temperature +data.properties.periods[i+2].temperature + data.properties.periods[i-1].temperature +  data.properties.periods[i-2].temperature + data.properties.periods[i+1].temperature)/5,2)
+        //     movingMean[i] =mean
+        // }
 
         var Wbar = d3.select("#weatherBar").html("")
 
@@ -44,7 +44,7 @@ function getHWeather(latlon){
             name : 'Moving 5 Ave. Tempurature'
           };
         console.log(trace2)
-        var barData = [trace, trace2]; 
+        var barData = [trace]; 
 
         var layout = {
             title : "Hourly Weather Forecast",
@@ -54,7 +54,7 @@ function getHWeather(latlon){
             xaxis : {
                 title : "Time"
             },
-            showlegend: true 
+            showlegend: false 
         }
         // Plot the graph 
         Plotly.newPlot('weatherBar', barData , layout );
@@ -78,7 +78,7 @@ function getWeather(latlon){
             date = date[0].split("-")
             date = `${date[1]}-${date[2]}`
             document.getElementById('name').innerHTML += `
-                <div class="col-xs-8   col-lg-3">
+                <div class="boarder rounded col-xs-8   col-lg-3">
                     <div class="card card-block ${isday} " style="padding: 10px;">
                         <h2><b>${date} 
                         <br>${i.name} 
