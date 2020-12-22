@@ -4,7 +4,6 @@ psycopg2
 pandas
 gunicorn
 numpy
-dateutil
 sklearn
 sqlalchemy
 datetime
