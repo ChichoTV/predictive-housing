@@ -42,7 +42,7 @@
   </div>
         <div class="row">
           <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
-            <h1 style="color: ivory;">Amenities in the Area</h1>
+            <h1  id="AmenHead" style="color: ivory;">Amenities in the Area</h1>
             <p style="color: ivory;">View what amenities are in the area of your search</p>
           </div>
         </div>
@@ -50,33 +50,21 @@
           <div class="col-md-2">
             <div class="well">
               <form action="">
-                <label for="userinput" id="searchLabel">Type Zipcode</label><br>
+                <label for="userinput" id="searchLabel"><h3>Type Zipcode</h3></label><br>
                 <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
                 <input id="WSubmit" type="submit" value="View Results">
               </form>
               <br>
-              <form action="">
-                <!-- <label for="NewWindow"></label>
-                <button onclick="window.open('/')">New Window</button> -->
-              </form>
-            </div>
-            <div class="panel panel-primary">
-              <!-- <div class="panel-heading">
-                <h3 class="panel-title">Market Highlights</h3>
-              </div> -->
-              <div id="sample-metadata" class="panel-body">
-                
-              </div>
             </div>
           </div>
           <div class="jumbotron-fluid col-md-8 " style="margin-left: 25px;" >
-            <h2 class="" style="background-color: blanchedalmond; text-align: center; border :  5px inset burlywood ">7 Day   Weather Forecast</h2>
+            <h2 id="fore" style="background-color: blanchedalmond; text-align: center; border :  5px inset burlywood ">7 Day   Weather Forecast</h2>
             <div id="name" class="row flex-nowrap inpageScroll tile-div">
                 <div class="col-3 ">
                     <div class="card card-block isDay" style="padding: 10px;">
                   <img src="https://api.weather.gov/icons/land/night/few?size=medium" class="img-rounded card-img" alt="Weather Image">
                   <br>
-                  <b> Weaher Populates here  </b></div>
+                  <b> Weather Populates here  </b></div>
                 </div>
             </div>
         </div>

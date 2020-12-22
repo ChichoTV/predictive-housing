@@ -139,11 +139,11 @@
   font-size: large;
 }
 
-#map {
+#imap {
   margin: auto;
-  width: 60%;
+  width: 75%;
   padding: 10px;
-  
+
 }
 
 #weatherBar {

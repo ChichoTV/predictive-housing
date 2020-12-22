@@ -1,43 +1,36 @@
 // Reload Page 
 function handleSubmit(){
+    // Prevent reloading
     d3.event.preventDefault();
+    // Grab value from user and send to get lat & lon from census
     var input = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     getGEO(input)
 }
 
+// Grab lat and lon from census data 
 function getGEO(input){
-    console.log(input)
     // grab 2018 cencus data
     d3.json(`/sqlsearch/${input}`).then(function(data){
+
         var info2 = data
-        console.log(data)
+        // get lat and lon out of Json and then group for Weather api
         globalLat = info2.lat[0]
         globalLon = info2.lng[0]
         var both = globalLat+","+ globalLon
-        console.log(both)
-        console.log("CAUSE DRAMA")
-
+        // send to weather api
         getWeather(both)
     })
 }
 
-function reloadAmen(geo) {
-    console.log(geo)
-    if( geo){
-        window.location.reload("/amenity?" + geo)
-    }
-    // window.open("/amenity?39.21537,-121.20125" )
-    
-}
-
-// Weather Code 
+// Weather API call 
 function getHWeather(latlon){
+    // Grab from flask app 
     d3.json(`/weatherhour/${latlon}`).then(function(data){
-        console.log("HOUR")
+        // create variable and load variable from api
+        console.log(data)
         var xWdate = []
         var yWtemp = []
-        var movingMean = []
         data.properties.periods.forEach(i => {yWtemp.push(i.temperature)})
         data.properties.periods.forEach(i => { 
             var dateT = i.startTime.split("-")
@@ -46,34 +39,15 @@ function getHWeather(latlon){
             time[1] = time[1].split(":")[0]
             dateT = `-${dateT[0]}-${dateT[1]}-${time[0]} ${time[1]}:00`
             xWdate.push(dateT)
-
         })
-        var Htemp = data.properties.periods
-        movingMean[0] = data.properties.periods[0].temperature
-        movingMean[1] = data.properties.periods[1].temperature
-
-        movingMean[Htemp.length-1] = data.properties.periods[Htemp.length-1].temperature
-        movingMean[Htemp.length-2] = data.properties.periods[Htemp.length-2].temperature
-
-        // for(var i = 2; i < Htemp.length -2; i++) {
-        //     var mean =  Math.round(( data.properties.periods[i].temperature +data.properties.periods[i+2].temperature + data.properties.periods[i-1].temperature +  data.properties.periods[i-2].temperature + data.properties.periods[i+1].temperature)/5,2)
-        //     movingMean[i] =mean
-        // }
-
-        var Wbar = d3.select("#weatherBar").html("")
-
+        // build trace  data array and layout
         var trace = {
             x : xWdate,
             y: yWtemp,
             type: "line",
             name : "Hourly Tempurature"
         }; 
-        var trace2 = {
-            x: xWdate,
-            y: movingMean,
-            type: 'line', 
-            name : 'Moving 5 Ave. Tempurature'
-          };
+
         var barData = [trace]; 
 
         var layout = {
@@ -98,16 +72,20 @@ function getHWeather(latlon){
 }
 
 
-// Weather Code 
+// Weather  Forecast api call 
 function getWeather(latlon){
     d3.json(`/weather/${latlon}`).then(function(data){
-        console.log(data.properties.periods[9].icon)
+        // clear name id on HTML
         d3.select("#name").html("")
+        // go through to grab each period
         data.properties.periods.forEach(i => {
+            // change background color of cards 
             if(i.isDaytime){ var isday = 'isDay'} else{isday =  'isNight'}
+            // format the date 
             var date = i.startTime.split("T")
             date = date[0].split("-")
             date = `${date[1]}-${date[2]}`
+            // build the cards that will hold the weather information 
             document.getElementById('name').innerHTML += `
                 <div class="boarder rounded col-xs-8   col-lg-3">
                     <div class="card card-block ${isday} " style="padding: 10px;">
@@ -121,7 +99,17 @@ function getWeather(latlon){
                 </div>`
         })
         getHWeather(latlon)
+        InfoW(latlon)
     })
+}
+
+// Place name of area in header 
+function InfoW(LL){
+    d3.json(`/weatherinfo/${LL}`).then(function(data){
+        console.log(data.properties.relativeLocation.properties.city)
+        d3.select('#AmenHead').html("").text(`Amenities in the ${data.properties.relativeLocation.properties.city} Area`)
+        d3.select('#fore').html("").text(`7 Day   Weather Forecast for ${data.properties.relativeLocation.properties.city}`)
+})
 }
 
 // var streetmap;
@@ -164,8 +152,6 @@ var LatLon = window.location.search.slice(1)
 // LatLon = "39.21537,-121.20125"
 getWeather(LatLon)
 
-
-
-
+// activate new search for the page 
 d3.select('#WSubmit').on('click' , handleSubmit);
 
