@@ -5,7 +5,7 @@ var indicatorCodeRental = "ZRISFRR.json";
 // var userSelection;
 var globalLat ; 
 var globalLon ;
-var userInput = window.location.search.slice(1,6);
+var userInput = parseInt(window.location.search.slice(1,6));
 var indicator = window.location.search.slice(7,11)
 function on_submit(){
     let pulled_data = Sales_API_Call();
