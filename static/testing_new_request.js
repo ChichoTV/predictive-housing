@@ -8,12 +8,12 @@ function on_submit(){
     userInput = d3.select('#input').node().value;
     d3.select('#input').node().value = "";
     userSelection = d3.select('#hometype').node().value;
-    let pulled_data = Sales_API_Call(userInput);
+    let pulled_data = Sales_API_Call();
     BuildSalesGraph(pulled_data);
     linear_regression(indicator,userInput);
     BuildRentalGraph();
 }
-function Sales_API_Call(input){
+function Sales_API_Call(){
     // grabbing zip code from search
     // console.log(userInput);
     // user selects hometype from the dropdown menu
