@@ -174,12 +174,12 @@ function SummaryGraphText(SavingsAmount){
 }
 
 function UpdateZillowSalesURL(){
-    window.open(`http://www.zillow.com/homes/${userInputHolder}_rb`, "_blank")
+    window.location.href=`http://www.zillow.com/homes/${userInputHolder}_rb`;
     
 }
 
 function UpdateZillowRentURL(){
-    window.open(`http://www.zillow.com/homes/for_rent/${userInputHolder}_rb`, "_blank");
+    window.location.href=`http://www.zillow.com/homes/for_rent/${userInputHolder}_rb`;
     
 
 }
