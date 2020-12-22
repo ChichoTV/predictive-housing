@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MortgagePage</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="mortgagestyle.css">
+    <link rel="stylesheet" href="../static/css/mortgagestyle.css">
 </head>
 <body>
     
@@ -19,13 +19,17 @@
   <input type="text" id="DownPayment" name="DownPayment" value="" placeholder="12000"><br>
   <label for="Interest">Interest Rate: %</label><br>
   <input type="text" id="Interest" name="Interest" value="" placeholder="3.5"><br>
+  <label for="PropertyTax">Yearly Property Tax Rate: (%)</label><br>
+  <input type="text" id="PropertyTax" name="PropertyTax" value="" placeholder="1.1"><br>
+  <label for="HomeInsurance">Yearly Homeowner's Insurance</label><br>
+  <input type="text" id="HomeInsurance" name="HomeInsurance" value="" placeholder="1200"><br>
 </form>
 <label for = "SelectTerm">Mortgage Period (years)</label><br>
-<select id="SelectTerm" onchange= >
-    <option value = "10">10 Years</option>
-    <option value = "15">15 Years</option>
-    <option value = "20">20 Years</option>
-    <option value = "30">30 Years</option>
+<select id="SelectTerm" onchange= "formatOption()">
+    <option value = "10">10 Year-Fixed</option>
+    <option value = "15">15 Year-Fixed</option>
+    <option value = "20">20 Year-Fixed</option>
+    <option value = "30">30 Year-Fixed</option>
     </select><br><br><br><br>
     
 <button id = "MortgageCalc_Button" value = "Calculate" onclick="MortgageCalculator()">Calculate</button><br>
@@ -44,7 +48,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-      <script src="mortgage.js"></script>
+      <script src="../static/js/mortgage.js"></script>
     
 </body>
 </html>
