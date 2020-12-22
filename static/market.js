@@ -16,6 +16,14 @@ function on_submit(){
     console.log(userInput);
     console.log(indicator)
 }
+
+function newsearch (){
+    var newInput = d3.select("#input").value;
+    d3.select('#input').node().value = "";
+    newOnsub(newInput)
+
+}
+
 function Sales_API_Call(){
     // grabbing zip code from search
     // console.log(userInput);
