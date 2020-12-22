@@ -26,6 +26,22 @@ def index():
 def calc():
     return render_template("calculation.html")
 
+@app.route("/amenity")
+def amenities():
+    return render_template("Amenities.html")
+
+@app.route("/market")
+def marketData():
+    return render_template("MarketData.html")
+
+@app.route("/mortgage")
+def mortgage():
+    return render_template("mortgage.html")
+@app.route("/about")
+
+def about():
+    return render_template("about.html")
+    
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
     homes = pd.read_sql(f'select year_structure_built_1939_or_earlier, year_structure_built_1940_to_1949, year_structure_built_1950_to_1959, year_structure_built_1960_to_1969, year_structure_built_1970_to_1979, year_structure_built_1980_to_1989, year_structure_built_1990_to_1999, year_structure_built_2000_to_2009, year_structure_built_2010_to_2013, year_structure_built_2014_or_later, year_structure_built_total from public.census_2018 where zipcode={zipcode}', connection)
@@ -96,6 +112,50 @@ def api(home_zipcode):
     session.close()
     return to_return
 
+@app.route("/weather/<latlon>")
+def weatherAPI(latlon):
+    # Api Call, will be used once for the initial pull then 2 more times to get
+    # Daily forecast and then Hourly Forecast
+    def weather(url):
+        headers = {
+            'x-rapidapi-key': "76d2396840mshc562c26618d33a2p1fb1e6jsn95b66aa3ea3c",
+            'x-rapidapi-host': "national-weather-service.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        return response 
+    # Initial API used to pull down area details using Lat and Lon
+    url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
+    firstPull = weather(url)
+    # Format first pull then get API url to call both forecasts 
+    info = firstPull.json()
+    fore = info['properties']['forecast']
+    foreHour= info['properties']['forecastHourly']
+    # Pull forecast data
+    forecast = weather(fore).json()
+    return  forecast
+
+@app.route("/weatherhour/<latlon>")
+def weatherhourly(latlon):
+    # Api Call, will be used once for the initial pull then 2 more times to get
+    # Daily forecast and then Hourly Forecast
+    def weatherH(url):
+        headers = {
+            'x-rapidapi-key': "76d2396840mshc562c26618d33a2p1fb1e6jsn95b66aa3ea3c",
+            'x-rapidapi-host': "national-weather-service.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        return response 
+    # Initial API used to pull down area details using Lat and Lon
+    url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
+    firstPull = weatherH(url)
+    # Format first pull then get API url to call both forecasts 
+    info = firstPull.json()
+    foreHour= info['properties']['forecastHourly']
+    # Pull forecast data
+    forecastHour = weatherH(foreHour).json()
+    return  forecastHour
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 
