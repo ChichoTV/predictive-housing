@@ -41,6 +41,10 @@ def mortgage():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/Mohan")
+def mohan():
+    return render_template("Mohan.html")
     
 @app.route("/homes/<zipcode>")  
 def homes(zipcode):
@@ -130,10 +134,28 @@ def weatherAPI(latlon):
     # Format first pull then get API url to call both forecasts 
     info = firstPull.json()
     fore = info['properties']['forecast']
-    foreHour= info['properties']['forecastHourly']
     # Pull forecast data
     forecast = weather(fore).json()
-    return  forecast
+    return  forecast 
+
+@app.route("/weatherinfo/<latlon>")
+def weatherInfo(latlon):
+    # Api Call, will be used once for the initial pull then 2 more times to get
+    # Daily forecast and then Hourly Forecast
+    def weather(url):
+        headers = {
+            'x-rapidapi-key': "76d2396840mshc562c26618d33a2p1fb1e6jsn95b66aa3ea3c",
+            'x-rapidapi-host': "national-weather-service.p.rapidapi.com"
+            }
+
+        response = requests.request("GET", url, headers=headers)
+        return response 
+    # Initial API used to pull down area details using Lat and Lon
+    url = f'https://national-weather-service.p.rapidapi.com/points/{latlon}'
+    firstPull = weather(url)
+    # Format first pull then get API url to call both forecasts 
+    info = firstPull.json()
+    return  info 
 
 @app.route("/weatherhour/<latlon>")
 def weatherhourly(latlon):
@@ -156,6 +178,6 @@ def weatherhourly(latlon):
     # Pull forecast data
     forecastHour = weatherH(foreHour).json()
     return  forecastHour
-
+    
 if __name__ == '__main__':
     app.run(debug=True) 

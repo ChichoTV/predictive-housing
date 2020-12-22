@@ -37,17 +37,113 @@ body{
   padding-left: 250px;
 }
 
+.horizontal-scroll-wrapper {
+  /* position: absolute; */
+  display: block;
+  top: 25px;
+  left: 25px;
+  width: calc(250px + 1px);
+  max-height: 750px;
+  margin: 10px;
+  padding-top: 10px;
+  background: teal;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transform: rotate(-90deg) translateY(-250px);
+          transform: rotate(-90deg) translateY(-250px);
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+}
+.horizontal-scroll-wrapper > div {
+  display: block;
+  padding: 25px;
+  background: #cab;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+}
 
-/* #contianerMap {
-	width:1000px;
-	height:595px;
-	margin: 0 auto;
-	} */
+.squares {
+  padding: 250px 0 0 0;
+}
+.squares > div {
+  width: 250px;
+  height: 250px;
+  margin: 10px 0;
+}
 
-/* #map {
-		width:995px;
-		height:445px;
-		margin-left:215px;
-		margin-top:13px;
-} */
+
+
+.card-block {
+  min-height: 300px;
+  border-style: solid  ;
+  border-color : black;
+  border-width: 2px; 
+
+}
+
+.inpageScroll {
+padding: 50px;
+overflow: scroll;
+background-color: lightskyblue;
+border-radius: 8px;
+border : 5px inset lightblue 
+}
+
+.tile-div {
+padding: 25px;
+}
+
+.card-img{
+height: 100%;
+padding-right: 50px;
+align-items: center;
+max-height: 200px;
+max-width: 200px;
+
+
+}
+
+.isDay {
+background-color: lightyellow;
+font-size: large;
+
+}
+
+.isNight {
+background-color: lightblue;
+color: black;
+font-size: large;
+}
+
+#imap {
+margin: auto;
+width: 75%;
+padding: 10px;
+
+}
+
+#weatherBar {
+margin: auto;
+width : 60%;
+padding : 10px;
+height: 500px;
+}
+
+.Wborders {
+border : 5px inset burlywood; 
+border-radius: 8px;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-button {
+  width: 1px;
+  height: 1px;
+}
+
 
