@@ -1,13 +1,13 @@
 var areaCategory = "Z";
 var indicatorCodeRental = "ZRISFRR.json";
-var indicator;
-var userInput;
-var userSelection;
+// var indicator;
+// var userInput;
+// var userSelection;
 var globalLat ; 
 var globalLon ;
+var userInput = window.location.search.slice(1,6);
+var indicator = window.location.search.slice(7,11)
 function on_submit(){
-    var userInput = window.location.search.slice(1,6);
-    var indicator = window.location.search.slice(7,11)
     let pulled_data = Sales_API_Call();
     BuildSalesGraph(pulled_data);
     linear_regression(indicator,userInput);
@@ -169,7 +169,6 @@ function BuildRentalGraph(){
     marketInfo.append("h5").text(key[0].toUpperCase().replace("_", " ").replace("_", " ") + ": " + key[1][0] + "\n");
     globalLat = info1.lat[0]
     globalLon = info1.lng[0]
-    createMap(info1.lat[0] , info1.lng[0])
     });
 })
 })

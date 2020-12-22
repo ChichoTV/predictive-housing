@@ -4,6 +4,12 @@ import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+import numpy as np
+import dateutil
+import datetime as dt
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 
 engine = create_engine('postgresql://MasterUser:Bootcamp123@predictivehousingvsrental.cx0mfruhncd6.us-east-2.rds.amazonaws.com:5432/postgres')
 connection = engine.connect()
@@ -45,39 +51,41 @@ def regression_api(home_zipcode):
     zipcode=home_zipcode.split('&')[1]
     region=session.query(regions.region_id).filter(regions.zip==zipcode).all()[0][0]
     Response= requests.get(f'https://www.quandl.com/api/v3/datatables/ZILLOW/DATA?indicator_id={home}&region_id={region}&api_key=74g3zUso-i7jUjwzzsgh').json()
-    
-    try:
-        data=Response['datatable']['data']
-        def pull_price(n):
-            return [n[3]]
+    data=Response['datatable']['data']
+    to_return={'data':[]}
+    for item in data:
+        if int(item[2].split('-')[0])>=2017:
+            to_return['data'].append(item)
+        else:
+            pass
+    def pull_price(n):
+        return [n[3]]
     # date must be converted to ordinal since its a numeric value which regression requires
-        def pull_dates(n):
-            return [dt.datetime.strptime(n[2], '%Y-%m-%d').toordinal()]
-        dates=list(map(pull_dates,data))
-        prices=list(map(pull_price,data))
-        y=np.array(prices)
+    def pull_dates(n):
+        return [dt.datetime.strptime(n[2], '%Y-%m-%d').toordinal()]
+    dates=list(map(pull_dates,to_return['data']))
+    prices=list(map(pull_price,to_return['data']))
+    y=np.array(prices)
     # grabbing the latest date to be able to predict the next 12 months
-        now=dt.datetime.now()
+    now=dt.datetime.now()
     # utility for adding months to a datetime object
-        a_month = dateutil.relativedelta.relativedelta(months=1)
+    a_month = dateutil.relativedelta.relativedelta(months=1)
     # making 2 lists, one of the dates as strings, one as ordinals
-        next_year_ord=[]
-        next_year_strings=[]
-        temp=now
-        for i in range(12):
-            temp=temp+a_month
-            next_year_ord.append([temp.toordinal()])
-            next_year_strings.append(temp.strftime('%Y-%m-%d'))
-        X_train, X_test, y_train, y_test = train_test_split(dates, y, random_state=42)
-        model=LinearRegression()
-        model.fit(X_train,y_train)
-        predictions=model.predict(next_year_ord)
-        to_return={}
-        for i in range(len(predictions)):
-            to_return[next_year_strings[i]]=predictions[i][0]
-        return to_return
-    except:
-        return {}
+    next_year_ord=[]
+    next_year_strings=[]
+    temp=now
+    for i in range(12):
+        temp=temp+a_month
+        next_year_ord.append([temp.toordinal()])
+        next_year_strings.append(temp.strftime('%Y-%m-%d'))
+    X_train, X_test, y_train, y_test = train_test_split(dates, y, random_state=42)
+    model=LinearRegression()
+    model.fit(X_train,y_train)
+    predictions=model.predict(next_year_ord)
+    ret={}
+    for i in range(len(predictions)):
+        ret[next_year_strings[i]]=predictions[i][0]
+    return ret
 
 
 @app.route('/test_new_api/<home_zipcode>')
