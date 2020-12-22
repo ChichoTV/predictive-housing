@@ -14,7 +14,8 @@ function MortgageCalculator(){
     let Value = homePrice - downPayment;
     let mortgagePayment = (Value)*((i*((1+i)**t))/(((1+i)**t)-1));
     let insurance = $("#HomeInsurance").val()/12
-    let taxes = (($("#PropertyTax").val()/100)* Value)/12
+    let taxRate = $("#PropertyTax").val();
+    let taxes = ((taxRate/100)*homePrice)/12;
     let MonthlyPayment = Math.round(mortgagePayment + insurance + taxes)
     document.getElementById("Monthly_Mortgage").innerHTML=`The monthly mortgage payment is: ${MonthlyPayment}`;
     console.log(MonthlyPayment)

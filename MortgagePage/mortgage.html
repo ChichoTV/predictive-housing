@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="../static/css/mortgagestyle.css">
 </head>
 <body>
+    <div class="row">
+        <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
+          <h1 style="color: ivory;">Mortgage Calculator</h1>
+          <p style="color: ivory;"></p>
+        </div>
+      </div>
     
     
-    <h1>Mortgage Calculator</h1>
 
-<form>
+<form id = "form">
   <label for="HomePrice">Home Price:</label><br>
   <input type="text" id="HomePrice" name="HomePrice" value="" placeholder="150000"><br>
   <label for="DownPayment">Down Payment:</label><br>
@@ -24,15 +29,19 @@
   <label for="HomeInsurance">Yearly Homeowner's Insurance</label><br>
   <input type="text" id="HomeInsurance" name="HomeInsurance" value="" placeholder="1200"><br>
 </form>
+<div id = "dropdown">
 <label for = "SelectTerm">Mortgage Period (years)</label><br>
 <select id="SelectTerm" onchange= "formatOption()">
     <option value = "10">10 Year-Fixed</option>
     <option value = "15">15 Year-Fixed</option>
     <option value = "20">20 Year-Fixed</option>
     <option value = "30">30 Year-Fixed</option>
-    </select><br><br><br><br>
-    
+    </select>
+</div>
+<br><br><br><br>
+<div id = 'calculate_button'>  
 <button id = "MortgageCalc_Button" value = "Calculate" onclick="MortgageCalculator()">Calculate</button><br>
+</div> 
 <br>
 
 <h2 id = "Monthly_Mortgage"></h2>
