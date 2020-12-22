@@ -52,7 +52,7 @@
               <form action="">
                 <label for="userinput" id="searchLabel">Type Zipcode</label><br>
                 <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
-                <input id="Submit" type="submit" value="View Results">
+                <input id="WSubmit" type="submit" value="View Results">
               </form>
               <br>
               <form action="">
@@ -61,9 +61,9 @@
               </form>
             </div>
             <div class="panel panel-primary">
-              <div class="panel-heading">
+              <!-- <div class="panel-heading">
                 <h3 class="panel-title">Market Highlights</h3>
-              </div>
+              </div> -->
               <div id="sample-metadata" class="panel-body">
                 
               </div>
@@ -84,19 +84,14 @@
 
         <div class="row">
           <div class="col-md-12 ">
-            <div id="weatherBar" class="Wborders">
+            <div id="weatherBar" style=" max-height: 500px; max-width: 2000;">
             </div>
             
           </div>
         </div>
         <div class="row "> 
-          <div id = "AContianerMap" class="col-md-12 " style=" border: rgb(139, 163, 187)  ; padding: 45px;">
-            <div id="map" class="Wborders" style=" height: 500px; max-width: 1000;"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 ">
-            <div id="piechart"  style="height: 400px;"></div>
+          <div id = "AContianerMap" class="col-md-12 ">
+            <div id="imap" style=" height: 500px; max-width: 1000;"></div>
           </div>
         </div>
       </div>

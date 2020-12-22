@@ -143,6 +143,7 @@
   margin: auto;
   width: 60%;
   padding: 10px;
+  
 }
 
 #weatherBar {
@@ -154,4 +155,7 @@
 
 .Wborders {
   border : 5px inset burlywood; 
+  border-radius: 8px;
+
+
 }
