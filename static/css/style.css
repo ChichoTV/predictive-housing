@@ -1,3 +1,6 @@
+body{
+  padding: 10px
+}
 .barGraphInfo {
     background-color: white ;
     color: black;
@@ -26,6 +29,14 @@
   background-color: #4CAF50;
   color: white;
 }
+#PieGraph{
+  margin: auto;
+  width: 75%;
+  /* padding: 10px; */
+  
+  padding-left: 250px;
+}
+
 
 /* #contianerMap {
 	width:1000px;

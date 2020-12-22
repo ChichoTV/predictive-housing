@@ -5,33 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MortgagePage</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="mortgagestyle.css">
+    <link rel="stylesheet" href="../static/css/mortgagestyle.css">
 </head>
 <body>
-    
-    
-    <h1>Mortgage Calculator</h1>
-
-<form>
-  <label for="HomePrice">Home Price:</label><br>
-  <input type="text" id="HomePrice" name="HomePrice" value="" placeholder="150000"><br>
-  <label for="DownPayment">Down Payment:</label><br>
-  <input type="text" id="DownPayment" name="DownPayment" value="" placeholder="12000"><br>
-  <label for="Interest">Interest Rate: %</label><br>
-  <input type="text" id="Interest" name="Interest" value="" placeholder="3.5"><br>
-</form>
-<label for = "SelectTerm">Mortgage Period (years)</label><br>
-<select id="SelectTerm" onchange= >
-    <option value = "10">10 Years</option>
-    <option value = "15">15 Years</option>
-    <option value = "20">20 Years</option>
-    <option value = "30">30 Years</option>
-    </select><br><br><br><br>
-    
-<button id = "MortgageCalc_Button" value = "Calculate" onclick="MortgageCalculator()">Calculate</button><br>
-<br>
+    <div class="row">
+        <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
+          <h1 style="color: ivory;">Mortgage Calculator</h1>
+          <p style="color: ivory;"></p>
+        </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well">    
+          <form id = "form">
+            <label for="HomePrice">Home Price:</label><br>
+            <input type="text" id="HomePrice" name="HomePrice" value="" placeholder="150000"><br>
+            <label for="DownPayment">Down Payment:</label><br>
+            <input type="text" id="DownPayment" name="DownPayment" value="" placeholder="12000"><br>
+            <label for="Interest">Interest Rate: %</label><br>
+            <input type="text" id="Interest" name="Interest" value="" placeholder="3.5" ><br>
+            <label for="PropertyTax">Yearly Property Tax Rate: (%)</label><br>
+            <input type="text" id="PropertyTax" name="PropertyTax" value="" placeholder="1.1" style="width: 200px;"><br>
+            <label for="HomeInsurance">Yearly Homeowner's Insurance</label><br>
+            <input type="text" id="HomeInsurance" name="HomeInsurance" value="" placeholder="1200" style="width: 200px;"><br>
+          </form>
+          <div id = "dropdown">
+            <label for = "SelectTerm">Mortgage Period (years)</label><br>
+            <select id="SelectTerm" onchange= "formatOption()" style="width: 200px;">
+            <option value = "10">10 Year-Fixed</option>
+            <option value = "15">15 Year-Fixed</option>
+            <option value = "20">20 Year-Fixed</option>
+            <option value = "30">30 Year-Fixed</option>
+            </select>
+          </div>
+          <br><br><br><br>
+          <div id = 'calculate_button'>  
+            <button id = "MortgageCalc_Button" value = "Calculate" onclick="MortgageCalculator()">Calculate</button><br>
+          </div>
+        </div>
+      </div>
+     
+      <div class="col-md-8">
+        <div class="well">   
+            <div id="piechart"  style="height: 400px;">Monthly Payment Breakdown</div>
+        </div>
+      </div>
+    </div>
 
 <h2 id = "Monthly_Mortgage"></h2>
+
+
 
     
             
@@ -44,7 +68,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-      <script src="mortgage.js"></script>
+      <script src="../static/js/mortgage.js"></script>
     
 </body>
 </html>

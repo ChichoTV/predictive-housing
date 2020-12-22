@@ -13,31 +13,27 @@ body{
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    padding: 10px
+}
+.card {
+    display:inline-block;
 }
 
-#form{
-    padding-left: 25px;
-}
-
-#calculate_button{
-    padding-left: 25px;
-}
-#dropdown{
-    padding-left: 25px;
-}
-#Monthly_Mortgage{
-    padding-left: 700px;
-}
-
-.container{
-    border: 5ps solid red;
-}
-.well{
-    padding: 15px;
-}
-#piechart{
+.container-fluid{
     text-align: center;
-    font-weight: bold;
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+    padding-bottom: 15px;
+}
+.container-fluid2{
+    text-align: center;
+    
+}
+#secondrow{
+    padding-left: 400px;
+    padding-bottom: 15px;
 }
 
+#references{
+    text-align: center;
+}

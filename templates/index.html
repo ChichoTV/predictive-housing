@@ -36,8 +36,9 @@
   <div class="topnav">
     <a class="active" href="/">Home</a>
     <a href="/calculation">Investment Calculator</a>
+    <a href="/mortgage">Mortgage Calculator</a>
     <a href="/amenity">Amenities</a>
-    <a href="#about">About</a>
+    <a href="/about">About</a>
   </div>
         <div class="row">
           <div class="col-md-12 jumbotron text-center" style="background-image: url(https://tse4.mm.bing.net/th?id=OIP.8QgHF_QxuxhVJzKiD-03NwHaEK&pid=Api&P=0&w=338&h=191); background-size: 100% 100%;" >
@@ -51,11 +52,18 @@
               <button onclick="window.location.href='https://www.zillow.com', '_blank';">
                 <img src="https://tse1.mm.bing.net/th?id=OIP.oI9iu8HvlnQNMjOaA2FScQHaGq&pid=Api&P=0&w=205&h=186" alt="Zillow" width="100" height="100"><br>
                 Click Here for Zillow Listings
+
             </div>
-            
           </div>
-          
-         
+          <div class="col-md-5">
+            <div id="barText" >
+                
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="gaugeText" >
+                <img src="" alt="">
+            </div>
           </div>
         </div>
         <div class="row">
@@ -75,13 +83,51 @@
                 <option>5+ Bedrooms</option>
               </select>
               <form action="">
-                <label for="NewWindo" id="searchLabel">Type Zipcode</label><br>
+                <label for="userinput" id="searchLabel">Type Zipcode</label><br>
                 <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
                 <input id="Submit" type="submit" value="View Results">
               </form>
+              <br>
+              <form action="">
+                <label for="NewWindow"></label>
+                <button onclick="window.open('/')">New Window</button>
+              </form>
+
+
+            </div>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Market Highlights</h3>
+              </div>
+              <div id="sample-metadata" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="bar">
+            </div>
+            
+          </div>
+          <div class="col-md-5">
+            <div id="gauge">
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <div id= "Redline" ></div>
+          </div>
+        </div>
+        
+        <div id = "PieGraph" class="row"> 
+          <div class="col-md-12">
+            <div id="piechart"  style="height: 400px;"></div>
+          </div>
+        </div>
+      </div>
+
 
 
     <!-- Footer-->
@@ -96,7 +142,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <script type="text/javascript" src="static/home.js"></script>
+  <script type="text/javascript" src="../static/js/new_app.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
