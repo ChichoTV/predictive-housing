@@ -74,6 +74,13 @@
                 <option value="Z">Zipcode</option>
                 <option value="S">State</option>
               </select> -->
+              <select id="hometype">
+                <option>1 Bedroom</option>
+                <option>2 Bedroom</option>
+                <option>3 Bedroom</option>
+                <option>4 Bedroom</option>
+                <option>5+ Bedrooms</option>
+              </select>
               <form action="">
                 <label for="userinput" id="searchLabel">Type Zipcode</label><br>
                 <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
@@ -82,7 +89,7 @@
               <br>
               <form action="">
                 <label for="NewWindow"></label>
-                <button onclick="window.open('/')">New Window</button>
+                <button onclick="openAmenities()">Amenities</button>
               </form>
 
 
@@ -112,11 +119,6 @@
             <div id= "Redline" ></div>
           </div>
         </div>
-        <div class="row"> 
-          <div id = "contianerMap" class="col-md-8" style="border: rgb(139, 163, 187);">
-            <div id="map"  style="height: 400px;"></div>
-          </div>
-        </div>
         <div class="row"> -->
           <div class="col-md-12">
             <div id="piechart"  style="height: 400px;"></div>
@@ -138,12 +140,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
-  <script type="text/javascript" src="static/app.js"></script>
-  <script type="text/javascript" src="../app.py"></script>
+  <script type="text/javascript" src="static/new_app.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
-  <script type="text/javascript" src="/assets/config.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
