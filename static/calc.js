@@ -1,12 +1,13 @@
 var areaCategory = "Z"
-var indicatorCodePrice = 'ZHVISF'
+// var indicatorCodePrice = 'ZSFH'
 var indicatorCodeRental = "ZRISFRR.json"
+var indicator = "ZSFH";
 // var userInput = "93309"
 // Use when working with the index.html page
 var userInput = d3.select('#input').node().value;
-// var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
-// var urlRental = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodeRental}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
+
 var userInputHolder;
+
 function handleSubmit(){
     // prevent the page from reloading then grab the value the user input and empty the input value
     d3.event.preventDefault();
@@ -15,7 +16,7 @@ function handleSubmit(){
     d3.select('#input').node().value = "";
     // kick off other function using the user input
     let MedianRentalPrice = APIRentalCall(userInput);
-    let MedianHomeValue = APIHomePriceCall(userInput);
+    let MedianHomeValue = APIHomePriceCall(userInput, indicator);
     let MonthlyMortgagePayment = calculateMortagePayment(MedianHomeValue);
     let MonthlySavings = bestvalue(MonthlyMortgagePayment, MedianRentalPrice); 
     let MoneyGrowthArray = investmentCalculator(MonthlySavings); 
@@ -30,7 +31,8 @@ function APIRentalCall(input){
     xhReq1.open("GET", urlRental, false);
     xhReq1.send(null);
     var myRentalData = JSON.parse(xhReq1.responseText);
-    let medRent = getMedianPrice(myRentalData);
+    console.log(myRentalData)
+    let medRent = getMedianRentalPrice(myRentalData);
     console.log(medRent);
     document.getElementById("RatesTitle").innerHTML = "Median Monthly Rates"
     document.getElementById("Rent").innerHTML = "The estimated monthly rent in this area is: $<b>" + medRent + "</b>"
@@ -38,25 +40,38 @@ function APIRentalCall(input){
     
 }
 
-function APIHomePriceCall(input){
-    var url = `https://www.quandl.com/api/v3/datasets/ZILLOW/${areaCategory}${input}_${indicatorCodePrice}?start_date=2017-01-01&api_key=sPG_jsHhtuegYcT7TNWz`
+    
+function APIHomePriceCall(input, homeChoiceCode){
+    console.log(homeChoiceCode);
+    console.log(input);
+     
+    var url = `/test_new_api/${homeChoiceCode}&${input}`
 
     var xhReq = new XMLHttpRequest();
     xhReq.open("GET", url, false);
     xhReq.send(null);
     var myHomePriceData = JSON.parse(xhReq.responseText);
-    // console.log(myHomePriceData);
-    let MedPriceHome = getMedianPrice(myHomePriceData)
-    // console.log(MedPriceHome)
+    console.log(myHomePriceData);
+    let MedPriceHome = getMedianHomePrice(myHomePriceData)
+    console.log(MedPriceHome)
     document.getElementById("MedianHomeValue").innerHTML = "The Median Price for a home in this area is: $<b>"+
     MedPriceHome + "</b>"
     return MedPriceHome;
     
 }
 // Function takes in data from API call
-function getMedianPrice(Price){
+function getMedianHomePrice(Price){
+    PriceList = [];
+    Price.data.forEach(i => {PriceList.push(i[3]) });
+    console.log(PriceList)
+    let MedianPrice = d3.median(PriceList);
+    console.log(MedianPrice)
+    return MedianPrice;
+}
+function getMedianRentalPrice(Price){
     PriceList = [];
     Price.dataset.data.forEach(i => {PriceList.push(i[1]) });
+    console.log(PriceList)
     let MedianPrice = d3.median(PriceList);
     console.log(MedianPrice)
     return MedianPrice;
