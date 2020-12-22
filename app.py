@@ -37,8 +37,8 @@ def marketData():
 @app.route("/mortgage")
 def mortgage():
     return render_template("mortgage.html")
+    
 @app.route("/about")
-
 def about():
     return render_template("about.html")
     
