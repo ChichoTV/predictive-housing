@@ -48,21 +48,34 @@ body {
 #RatesTitle{
     color: darkgreen;
     font-weight: bold;
+    margin: auto;
+    text-align: center;
 }
 #savingsNumber{
     font-size: large;
     color: red;
     padding-bottom: 20px;
-    font-weight:bold
+    font-weight:bold;
+    margin: auto;
+    text-align: center;
 }
 #Graph_Summary_Text{
     color:darkgreen;
     font-weight: bold;
     font-size: large;
+    margin: auto;
+    text-align: center;
 }
 h4{
     color: darkgreen;
     font-weight: bold;
+    margin: auto;
+    text-align: center;
+}
+
+h5{
+    margin: auto;
+    text-align: center;
 }
 
 #Rent_Button{
