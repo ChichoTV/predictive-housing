@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/index.css">
     <style>
         body, html {
           height: 100%;
@@ -47,9 +47,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-2">
+          <div class="col-md-12">
             <div class="well">
-              <button onclick="window.location.href='https://www.zillow.com', '_blank';">
+              <button id='z_button' onclick="window.location.href='https://www.zillow.com', '_blank';">
                 <img src="https://tse1.mm.bing.net/th?id=OIP.oI9iu8HvlnQNMjOaA2FScQHaGq&pid=Api&P=0&w=205&h=186" alt="Zillow" width="100" height="100"><br>
                 Click Here for Zillow Listings
 
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-12">
             <div class="well">
               <!-- <h5>Select Area Category</h5>
 
@@ -82,24 +82,24 @@
                 <option>4 Bedroom</option>
                 <option>5+ Bedrooms</option>
               </select>
-              <form action="">
-                <label for="userinput" id="searchLabel">Type Zipcode</label><br>
-                <input type="text" id="input" style='width: 100px' placeholder="00000"><br><br>
+              <form id="zip" action="">
+                <!-- <label for="userinput" id="searchLabel">Enter Zipcode</label><br> -->
+                <input type="text" id="input" style='width: 200px' placeholder="Enter Zipcode Ex: 95973"><br><br>
                 <input id="Submit" type="submit" value="View Results">
               </form>
               <br>
-              <form action="">
+              <!-- <form action="">
                 <label for="NewWindow"></label>
                 <button onclick="window.open('/')">New Window</button>
-              </form>
+              </form> -->
 
 
             </div>
-            <div class="panel panel-primary">
+            <!-- <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">Market Highlights</h3>
               </div>
-              <div id="sample-metadata" class="panel-body">
+              <div id="sample-metadata" class="panel-body"> -->
                 
               </div>
             </div>

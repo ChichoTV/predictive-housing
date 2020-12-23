@@ -169,7 +169,7 @@ function MakeGraph(MoneyArray){
 }
 function SummaryGraphText(SavingsAmount){
     document.getElementById("Graph_Summary_Text").innerHTML 
-    = "If you were to invest your monthly savings of $<b>" + SavingsAmount + "</b> each monthy with  4% return, this could be your savings over time." 
+    = "If you were to invest your monthly savings of $<b>" + SavingsAmount + "</b> each month with 4% return, this could be your savings over time." 
 
 }
 

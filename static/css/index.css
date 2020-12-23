@@ -1,0 +1,71 @@
+.well{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+    align-content: center;
+  }
+  
+  #z_button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #input{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #hometype{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #Submit{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+label{
+    text-align: center;
+  }
+body{
+    padding: 10px
+  }
+.barGraphInfo {
+      background-color: white ;
+      color: black;
+  }
+  
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+#PieGraph{
+    margin: auto;
+    width: 75%;
+    /* padding: 10px; */
+    
+    padding-left: 250px;
+}
