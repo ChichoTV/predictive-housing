@@ -336,7 +336,7 @@ function ReloadMohan(){
             </div>
           </div>
           <div class="jumbotron-fluid col-md-8 " style="margin-left: 25px;" >
-            <h2 id="fore" style="background-color: blanchedalmond; text-align: center; border :  5px inset burlywood ">4 Thankful people for Mohan</h2>
+            <h2 id="fore" style="background-color: blanchedalmond; text-align: center; border :  5px inset burlywood "5 Thankful people for Mohan</h2>
             <div id="name" class="row flex-nowrap inpageScroll tile-div">
                 <div class="col-3 ">
                     <div class="card card-block isDay" style="padding: 10px;">
