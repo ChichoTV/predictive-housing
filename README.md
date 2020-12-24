@@ -10,6 +10,12 @@ We make an API call to Zillow in real time to obtain Marked data on the Home Val
 At the same time a call is made to our SQL server based on the ZipCode entered to display key market data for the area to display in our Market Highlights box as well as generate a pie chart below the map to show the number of house built in that zip code in various year ranges. 
 Lastly to comply with Zillow's terms of using thier API we created a button with JQuery that when clicked, routes you to the Zillow website. 
 
+INVESTMENT PAGE:
+
+MORTGAGE PAGE:
+
+WEATHER PAGE:
+
 
 Contributers: Michael Munson, Nathan Ashbough, Taylor Vought, Rachel Harless, Kruti Gandhi
 UC Davis BootCamp 2020
