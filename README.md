@@ -4,6 +4,7 @@ In this Project we wanted to create a website to visualize housing data within t
 First we used Jupyter Notebook to run an API query through the US Census sight to get the most recent (2018) census data. We also used Jupyter for cleaning up Zillow data we needed to store to use their API. We then saved these datasets as CSV files and created a public AWS RDS server to house the data. 
 
 HOME PAGE:
+
 We then started on our JavaScript and created multiple functions to create and display our data.
 The user is able to enter a zip code for anywhere in the US and find the data we pulled.
 We make an API call to Zillow in real time to obtain Marked data on the Home Value Index by zipcode and the Rental index in order to viualize what areas may be better to buy in vs rent in. This was displayed using Plotly as bar graphs. 
