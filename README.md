@@ -12,6 +12,7 @@ At the same time a call is made to our SQL server based on the ZipCode entered t
 Lastly to comply with Zillow's terms of using thier API we created a button with JQuery that when clicked, routes you to the Zillow website. 
 
 INVESTMENT PAGE:
+This page is designed to help the user determine whether renting or purchasing will be more cost effective in the long run. The user enters a zipcode and the page updates with estimated monthly rent, median home price, and estimated monthly payments on a mortgage (with assumptions). As well, after determining which option is more effective, a graph will update showing savings growth over time if that monthly savings were to be invested. Lastly, the links at the bottom capture the zipcode that was entered to link directly to a zillow search of the same zipcode.
 
 MORTGAGE PAGE:
 
